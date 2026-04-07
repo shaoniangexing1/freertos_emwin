@@ -1,17 +1,23 @@
-#include "LCD.h"
+#include "Inf_ST7785_LCD.h"
 
 extern uint8_t key1_pressed;
 void start_flag(void)
 {
+    //taskENTER_CRITICAL();
     I2C_Start();
+   // taskEXIT_CRITICAL();
 }
 void stop_flag(void)
 {
+    //taskENTER_CRITICAL();
     I2C_Stop();
+    //taskEXIT_CRITICAL();
 }
 void transfer(uint8_t byte)
 {
+   // taskENTER_CRITICAL();
     I2C_WriteByte(byte);
+   // taskEXIT_CRITICAL();
 }
 
 void send_command_to_ROM( uchar datu )
@@ -31,7 +37,7 @@ void delay(uint16_t ms)
 void waitkey()
 {
     while(!key1_pressed){
-		HAL_Delay(50);
+		vTaskDelay(50);
 		if (key1_pressed)
 		{
 			break;
@@ -377,7 +383,7 @@ void LCD_Start()
 }
 void LCD_demo(void)
 {
-	 clear_screen();    							//clear all dots
+	 	clear_screen();    							//clear all dots
 		display_graphic_128x64(1,1,bmp_12864_3); 	//在第1页，第1列显示128x64点阵的图片		
 		waitkey();
 		display_graphic_128x64(1,1,bmp_12864_2); 	//在第1页，第1列显示128x64点阵的图片		
@@ -407,20 +413,20 @@ void LCD_demo(void)
 		waitkey();
 
 		clear_screen(); 
-		display_GB2312_string(1,1,(uint8_t*)"JLX12864G-200-PC");	/*在第1页，第1列，显示一串16x16点阵汉字或8x16的ASCII字*/
-		display_GB2312_string(3,1,(uint8_t*)"16X16简体汉字库,");
-		display_GB2312_string(5,1,(uint8_t*)"或8X16点阵ASCII,");  /*显示一串16x16点阵汉字或8x16的ASCII字.以下雷同*/
-		display_GB2312_string(7,1,(uint8_t*)"或5X7点阵ASCII码");
+		display_GB2312_string(1,1,(unsigned char *)"JLX12864G-200-PC");	/*在第1页，第1列，显示一串16x16点阵汉字或8x16的ASCII字*/
+		//display_GB2312_string(3,1,(unsigned char *)"16X16简体汉字库,");
+		//display_GB2312_string(5,1,(unsigned char *)"或8X16点阵ASCII,");  /*显示一串16x16点阵汉字或8x16的ASCII字.以下雷同*/
+		//display_GB2312_string(7,1,(unsigned char *)"或5X7点阵ASCII码");
 		waitkey();
 
 		clear_screen();			
-		display_GB2312_string(1,1,(uint8_t*)"abcdefghijklmnoprstuvwxyz");	/*在第1页，第1列，显示一串16x16点阵汉字或8*16的ASCII字*/
-		display_string_5x7(3,1,(uint8_t*)"abcdefghijklmnopqrstu");/*在第3页，第1列，显示一串5x7点阵的ASCII字*/
-		display_string_5x7(4,1,(uint8_t*)"JLX electronics Co., ");/*显示一串5x7点阵的ASCII字*/
-		display_string_5x7(5,1,"Ltd. established at  ");/*显示一串5x7点阵的ASCII字*/	
-		display_string_5x7(6,1,(uint8_t*)"year 2004.Focus LCM. ");/*显示一串5x7点阵的ASCII字*/
-		display_string_5x7(7,1,"TEL:TEL:0755-29784961    ");/*显示一串5x7点阵的ASCII字*/
-		display_string_5x7(8,1,"FAX:0755-29784964    ");/*显示一串5x7点阵的ASCII字*/
+		display_GB2312_string(1,1,(unsigned char *)"abcdefghijklmnoprstuvwxyz");	/*在第1页，第1列，显示一串16x16点阵汉字或8*16的ASCII字*/
+		display_string_5x7(3,1,(unsigned char *)"abcdefghijklmnopqrstu");/*在第3页，第1列，显示一串5x7点阵的ASCII字*/
+		display_string_5x7(4,1,(unsigned char *)"JLX electronics Co., ");/*显示一串5x7点阵的ASCII字*/
+		display_string_5x7(5,1,(unsigned char *)"Ltd. established at  ");/*显示一串5x7点阵的ASCII字*/	
+		display_string_5x7(6,1,(unsigned char *)"year 2004.Focus LCM. ");/*显示一串5x7点阵的ASCII字*/
+		display_string_5x7(7,1,(unsigned char *)"TEL:TEL:0755-29784961    ");/*显示一串5x7点阵的ASCII字*/
+		display_string_5x7(8,1,(unsigned char *)"FAX:0755-29784964    ");/*显示一串5x7点阵的ASCII字*/
 		waitkey();
 
 		display_graphic_128x64(1,1,bmp_12864_4); 	//在第1页，第1列显示128x64点阵的图片		
@@ -429,4 +435,32 @@ void LCD_demo(void)
 		waitkey();
 		display_graphic_128x64(1,1,bmp_12864_6); 	//在第1页，第1列显示128x64点阵的图片		
 		waitkey();
+}
+
+
+void LCD_FlushBuffer(uint8_t *pBuf, uint8_t page_start, uint8_t page_end, uint8_t col_start, uint8_t col_end) {
+    uint8_t page, col;
+    for (page = page_start; page <= page_end; page++) {
+        // 复用display_graphic_128x64的页/列寻址逻辑
+        uchar page_address = 0x40 + (page-1);
+        uchar column_address_L = 0xe0 + (col_start & 0x0f);
+        uchar column_address_H = 0xf0 + ((col_start >>4) & 0x0f);
+
+        start_flag();
+        transfer(0x7e);
+        transfer(0x00);
+        transfer(0x38);
+        transfer(page_address);
+        transfer(column_address_L);
+        transfer(column_address_H);
+        stop_flag();
+
+        start_flag();
+        transfer(0x7e);
+        transfer(0x40);
+        for (col = col_start; col <= col_end; col++) {
+            transfer(pBuf[(page-1)*128 + col]); // 按页取缓冲区数据
+        }
+        stop_flag();
+    }
 }

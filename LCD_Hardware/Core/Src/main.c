@@ -18,14 +18,17 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "crc.h"
 #include "flash.h"
 #include "iwdg.h"
 #include "lptim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "LCD.h"
+#include "Inf_ST7785_LCD.h"
+#include "app.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,6 +56,35 @@
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 
+/* ? Idle Task ?????? */
+void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, 
+                                    StackType_t **ppxIdleTaskStackBuffer, 
+                                    uint32_t *pulIdleTaskStackSize )
+{
+    /* ???? TCB ? Stack ???,??? static ???????????????? */
+    static StaticTask_t xIdleTaskTCB;
+    static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];
+
+    /* ???????? FreeRTOS ?? */
+    *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
+    *ppxIdleTaskStackBuffer = uxIdleTaskStack;
+    *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
+}
+
+/* ? Timer Service Task ?????? */
+void vApplicationGetTimerTaskMemory( StaticTask_t **ppxTimerTaskTCBBuffer, 
+                                     StackType_t **ppxTimerTaskStackBuffer, 
+                                     uint32_t *pulTimerTaskStackSize )
+{
+    /* ???? TCB ? Stack ??? */
+    static StaticTask_t xTimerTaskTCB;
+    static StackType_t uxTimerTaskStack[ configTIMER_TASK_STACK_DEPTH ];
+
+    /* ???????? FreeRTOS ?? */
+    *ppxTimerTaskTCBBuffer = &xTimerTaskTCB;
+    *ppxTimerTaskStackBuffer = uxTimerTaskStack;
+    *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -92,16 +124,19 @@ int main(void)
   MX_FLASH_Init();
   MX_IWDG_Init();
   MX_LPTIM1_Init();
+  MX_CRC_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   //LCD_BK_HIGH;
-  LCD_Start();
+  //LCD_Start();
+  //printf("helloword\r\n");
+  app_start();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-   LCD_demo();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

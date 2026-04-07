@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include "I2C.h"
 #include "SPI.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 #define IC_CS_HIGH HAL_GPIO_WritePin(IC_CS_GPIO_Port, IC_CS_Pin, GPIO_PIN_SET)
 #define IC_CS_LOW  HAL_GPIO_WritePin(IC_CS_GPIO_Port, IC_CS_Pin, GPIO_PIN_RESET)
@@ -42,6 +44,13 @@ void clear_screen(void);
 
 void LCD_Start();
 void LCD_demo(void);
+void display_graphic_128x64(uint page,uint column,uchar *dp);
+void start_flag(void);
+void stop_flag(void);
+void transfer(uint8_t byte);
+
+void LCD_FlushBuffer(uint8_t *pBuf, uint8_t page_start, uint8_t page_end, uint8_t col_start, uint8_t col_end);
+
 
 //×Ö¿âÊý×é
 
