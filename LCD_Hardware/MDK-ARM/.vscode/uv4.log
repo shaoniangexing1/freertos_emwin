@@ -1,10 +1,67 @@
-*** Using Compiler 'V6.24', folder: 'C:\Apps\Keil543\Arm\ARM\ARMCLANG\Bin'
-Build target 'LCD_Hardware'
-Middel/emwin/Config/GUIDRV_Template.c(452): error: use of undeclared identifier 'ret'
-  452 |     printf("_GetDevProp: index=%d, ret=%d\n", Index, ret);
-      |                                                      ^
-1 error generated.
-compiling GUIDRV_Template.c...
-"LCD_Hardware\LCD_Hardware.axf" - 1 Error(s), 0 Warning(s).
-Target not created.
-Build Time Elapsed:  00:00:01
+Load "LCD_Hardware\\LCD_Hardware.axf" 
+Set JLink Project File to "c:\Code\Embedded\workspace\STM32H562\freertos_emwin\LCD_Hardware\MDK-ARM\JLinkSettings.ini"* JLink Info: Device "STM32H562VI" selected.
+
+JLink info:
+------------
+DLL: V8.18 , compiled Mar  5 2025 14:38:20
+Firmware: J-Link V9 compiled May  7 2021 16:26:12
+Hardware: V9.20
+S/N : 59800876 
+Feature(s) : RDI, GDB, FlashDL, FlashBP, JFlash 
+
+* JLink Info: InitTarget() start
+* JLink Info: SWD selected. Executing JTAG -> SWD switching sequence.
+* JLink Info: DAP initialized successfully.
+* JLink Info: Enabling debug in 'Standby' & 'Stop' mode.
+* JLink Info: Enabling stop of IWDG & WWDG in debug mode.
+* JLink Info: InitTarget() end - Took 10.8ms
+* JLink Info: Found SW-DP with ID 0x6BA02477
+* JLink Info: DPIDR: 0x6BA02477
+* JLink Info: CoreSight SoC-400 or earlier
+* JLink Info: Scanning AP map to find all available APs
+* JLink Info: AP[2]: Stopped AP scan as end of AP map has been reached
+* JLink Info: AP[0]: APB-AP (IDR: 0x54770002, ADDR: 0x00000000)
+* JLink Info: AP[1]: AHB-AP (IDR: 0x84770001, ADDR: 0x01000000)
+* JLink Info: Iterating through AP map to find AHB-AP to use
+* JLink Info: AP[0]: Skipped. Not an AHB-AP
+* JLink Info: AP[1]: Core found
+* JLink Info: AP[1]: AHB-AP ROM base: 0xE00FE000
+* JLink Info: CPUID register: 0x410FD214. Implementer code: 0x41 (ARM)
+* JLink Info: Feature set: Mainline
+* JLink Info: Cache: No cache
+* JLink Info: Found Cortex-M33 r0p4, Little endian.
+* JLink Info: Cortex-M (ARMv8-M and later): The connected J-Link (S/N 59800876) uses an old firmware module that does not handle I/D-cache correctly. Proper debugging functionality cannot be guaranteed if cache is enabled
+* JLink Info: FPUnit: 8 code (BP) slots and 0 literal slots
+* JLink Info: Security extension: not implemented
+* JLink Info: CoreSight components:
+* JLink Info: ROMTbl[0] @ E00FE000
+* JLink Info: [0][0]: E00FF000 CID B105100D PID 000BB4C9 ROM Table
+* JLink Info: ROMTbl[1] @ E00FF000
+* JLink Info: [1][0]: E000E000 CID B105900D PID 000BBD21 DEVARCH 47702A04 DEVTYPE 00 Cortex-M33
+* JLink Info: [1][1]: E0001000 CID B105900D PID 000BBD21 DEVARCH 47701A02 DEVTYPE 00 DWT
+* JLink Info: [1][2]: E0002000 CID B105900D PID 000BBD21 DEVARCH 47701A03 DEVTYPE 00 FPB
+* JLink Info: [1][3]: E0000000 CID B105900D PID 000BBD21 DEVARCH 47701A01 DEVTYPE 43 ITM
+* JLink Info: [1][5]: E0041000 CID B105900D PID 001BBD21 DEVARCH 47724A13 DEVTYPE 13 ETM
+* JLink Info: [1][6]: E0042000 CID B105900D PID 000BBD21 DEVARCH 47701A14 DEVTYPE 14 CSS600-CTI
+* JLink Info: [0][1]: E0040000 CID B105900D PID 000BBD21 DEVARCH 00000000 DEVTYPE 11 TPIU
+ROMTableAddr = 0xE00FE000
+Target indicates no PACTBI support (PAC_KEY registers are not implemented)
+* JLink Info: Reset type: NORMAL (https://wiki.segger.com/J-Link_Reset_Strategies)
+* JLink Info: Reset: Halt core after reset via DEMCR.VC_CORERESET.
+* JLink Info: Reset: Reset device via AIRCR.SYSRESETREQ.
+
+Target info:
+------------
+Device: STM32H562VITx
+VTarget = 3.283V
+State of Pins: TCK: 0, TDI: 0, TDO: 0, TMS: 1, TRES: 1, TRST: 0
+Hardware-Breakpoints: 8
+Software-Breakpoints: 8192
+Watchpoints:          4
+JTAG speed: 4000 kHz
+
+* JLink Info: Memory map 'after startup completion point' is active
+Erase Done.Programming Done.Verify OK.* JLink Info: OnDisconnectTarget() start
+* JLink Info: Resetting used DBGMCU registers.
+* JLink Info: OnDisconnectTarget() end - Took 3.08ms
+Flash Load finished at 22:53:11

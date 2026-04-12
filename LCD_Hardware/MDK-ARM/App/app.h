@@ -2,6 +2,7 @@
 #define __FREERTOS_H__
 
 #include "Inf_ST7785_LCD.h"
+#include "ComGlobal.h"
 #include "GUI.h"
 #include "IWDG.h"
 #include "stdio.h"

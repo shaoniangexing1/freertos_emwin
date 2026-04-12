@@ -18,6 +18,8 @@
                 "c:\\Code\\Embedded\\workspace\\STM32H562\\freertos_emwin\\LCD_Hardware\\MDK-ARM\\Middel\\emwin\\Inc",
                 "c:\\Code\\Embedded\\workspace\\STM32H562\\freertos_emwin\\LCD_Hardware\\MDK-ARM\\Middel\\emwin\\Lib\\ARM",
                 "c:\\Code\\Embedded\\workspace\\STM32H562\\freertos_emwin\\LCD_Hardware\\MDK-ARM\\Middel\\emwin\\OS",
+                "c:\\Code\\Embedded\\workspace\\STM32H562\\freertos_emwin\\LCD_Hardware\\MDK-ARM\\Middel\\emwin\\GUI_NEW_Block",
+                "c:\\Code\\Embedded\\workspace\\STM32H562\\freertos_emwin\\LCD_Hardware\\MDK-ARM\\Com",
                 "c:\\Apps\\Keil543\\Arm\\ARM\\ARMCLANG\\include",
                 "c:\\Apps\\Keil543\\Arm\\ARM\\ARMCLANG\\include\\arm_linux",
                 "c:\\Apps\\Keil543\\Arm\\ARM\\ARMCLANG\\include\\arm_linux_compat",

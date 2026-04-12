@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32H562xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32H5xx_HAL_Driver/Inc;../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H5xx/Include;../Drivers/CMSIS/Include;./Inf;./BSP;./Middel/freertos;./Middel/freertos/include;./Middel/freertos/portable;./App;./Middel/emwin/Config;./Middel/emwin/Inc;./Middel/emwin/Lib/ARM;./Middel/emwin/OS</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32H5xx_HAL_Driver/Inc;../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H5xx/Include;../Drivers/CMSIS/Include;./Inf;./BSP;./Middel/freertos;./Middel/freertos/include;./Middel/freertos/portable;./App;./Middel/emwin/Config;./Middel/emwin/Inc;./Middel/emwin/Lib/ARM;./Middel/emwin/OS;.\Middel\emwin\GUI_NEW_Block;.\Com</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1417,6 +1417,26 @@
               <FileName>GUI_X_FreeRTOS.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middel\emwin\OS\GUI_X_FreeRTOS.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Mid/emwin/Module</GroupName>
+          <Files>
+            <File>
+              <FileName>EditModule.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middel\emwin\GUI_NEW_Block\EditModule.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Com</GroupName>
+          <Files>
+            <File>
+              <FileName>Debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Com\Debug.c</FilePath>
             </File>
           </Files>
         </Group>

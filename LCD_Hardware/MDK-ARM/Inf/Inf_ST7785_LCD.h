@@ -43,6 +43,7 @@ static uint8_t mao_hao[];
 void clear_screen(void);
 
 void LCD_Start();
+void LCD_SetContrast(uint8_t contrast);
 void LCD_demo(void);
 void display_graphic_128x64(uint page,uint column,uchar *dp);
 void start_flag(void);

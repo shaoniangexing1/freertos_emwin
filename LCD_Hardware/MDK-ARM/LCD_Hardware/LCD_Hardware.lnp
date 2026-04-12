@@ -52,6 +52,8 @@
 ".\Middel\emwin\Lib\ARM\GUI_CM3_L.lib"
 ".\Middel\emwin\Lib\ARM\GUI_CM4F_L.lib"
 "lcd_hardware\gui_x_freertos.o"
+"lcd_hardware\editmodule.o"
+"lcd_hardware\debug.o"
 --library_type=microlib --strict --scatter "LCD_Hardware\LCD_Hardware.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

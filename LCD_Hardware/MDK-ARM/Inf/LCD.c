@@ -380,6 +380,17 @@ void LCD_Start()
 	delay(100);
 	LCD_RST_HIGH;
 	initial_lcd();
+	//LCD_SetContrast(0xD0);  // 推荐值：CF / D0 / DF
+}
+// 对比度设置函数（ST7785/SSD1306 通用）
+void LCD_SetContrast(uint8_t contrast)
+{
+    start_flag();
+    transfer(0x7E);    // I2C 地址
+    transfer(0x00);    // 命令标志
+    transfer(0x81);    // 对比度指令
+    transfer(contrast);// 对比度值 0~255
+    stop_flag();
 }
 void LCD_demo(void)
 {
