@@ -1,4 +1,4 @@
-lcd_hardware/spi.o: BSP\SPI.c BSP\SPI.h ..\Core\Inc\gpio.h \
+lcd_hardware/spi.o: ..\Core\Src\spi.c ..\Core\Inc\spi.h \
   ..\Core\Inc\main.h ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal.h \
   ..\Core\Inc\stm32h5xx_hal_conf.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_rcc.h \
@@ -19,12 +19,12 @@ lcd_hardware/spi.o: BSP\SPI.c BSP\SPI.h ..\Core\Inc\gpio.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_flash.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_flash_ex.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_iwdg.h \
-  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_lptim.h \
-  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_ll_lptim.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_pwr.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_pwr_ex.h \
+  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_spi.h \
+  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_spi_ex.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_tim.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_tim_ex.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart_ex.h \
-  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_exti.h BSP\I2C.h
+  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_exti.h

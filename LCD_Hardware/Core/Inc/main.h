@@ -64,8 +64,16 @@ void Error_Handler(void);
 #define KEY_0_Pin GPIO_PIN_1
 #define KEY_0_GPIO_Port GPIOA
 #define KEY_0_EXTI_IRQn EXTI1_IRQn
+#define ST7789_SPI2_CS_Pin GPIO_PIN_2
+#define ST7789_SPI2_CS_GPIO_Port GPIOA
+#define ST7789_DC_Pin GPIO_PIN_3
+#define ST7789_DC_GPIO_Port GPIOA
 #define IC_CS_Pin GPIO_PIN_4
 #define IC_CS_GPIO_Port GPIOC
+#define ST7789_RES_Pin GPIO_PIN_8
+#define ST7789_RES_GPIO_Port GPIOE
+#define ST7789_BLK_Pin GPIO_PIN_9
+#define ST7789_BLK_GPIO_Port GPIOE
 #define IC_MISO_Pin GPIO_PIN_8
 #define IC_MISO_GPIO_Port GPIOA
 #define IIC_SCK_Pin GPIO_PIN_11

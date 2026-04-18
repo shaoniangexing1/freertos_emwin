@@ -1,5 +1,5 @@
-#ifndef __SPI_H__
-#define __SPI_H__
+#ifndef __BSP_ST7785_SPI__
+#define __BSP_ST7785_SPI__
 
 #include "gpio.h"
 #include "I2C.h"
@@ -21,4 +21,4 @@ void SPI_WriteByte(uint8_t data);
 
 uint8_t SPI_ReadByte(void);
 
-#endif /* __SPI_H__ */
+#endif /* __BSP_ST7785_SPI__ */

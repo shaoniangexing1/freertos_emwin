@@ -47,15 +47,23 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, IC_SCK_Pin|IC_MOSI_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(ST7789_SPI2_CS_GPIO_Port, ST7789_SPI2_CS_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, ST7789_DC_Pin|IIC_SCK_Pin|IIC_SDA_Pin|LCD_RST_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(IC_CS_GPIO_Port, IC_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, IIC_SCK_Pin|IIC_SDA_Pin|LCD_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(ST7789_RES_GPIO_Port, ST7789_RES_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : IC_SCK_Pin IC_MOSI_Pin IC_CS_Pin */
   GPIO_InitStruct.Pin = IC_SCK_Pin|IC_MOSI_Pin|IC_CS_Pin;
@@ -69,6 +77,20 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(KEY_0_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : ST7789_SPI2_CS_Pin ST7789_DC_Pin */
+  GPIO_InitStruct.Pin = ST7789_SPI2_CS_Pin|ST7789_DC_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ST7789_RES_Pin */
+  GPIO_InitStruct.Pin = ST7789_RES_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(ST7789_RES_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : IC_MISO_Pin */
   GPIO_InitStruct.Pin = IC_MISO_Pin;

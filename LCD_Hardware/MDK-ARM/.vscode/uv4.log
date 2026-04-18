@@ -14,7 +14,7 @@ Feature(s) : RDI, GDB, FlashDL, FlashBP, JFlash
 * JLink Info: DAP initialized successfully.
 * JLink Info: Enabling debug in 'Standby' & 'Stop' mode.
 * JLink Info: Enabling stop of IWDG & WWDG in debug mode.
-* JLink Info: InitTarget() end - Took 10.8ms
+* JLink Info: InitTarget() end - Took 7.96ms
 * JLink Info: Found SW-DP with ID 0x6BA02477
 * JLink Info: DPIDR: 0x6BA02477
 * JLink Info: CoreSight SoC-400 or earlier
@@ -53,7 +53,7 @@ Target indicates no PACTBI support (PAC_KEY registers are not implemented)
 Target info:
 ------------
 Device: STM32H562VITx
-VTarget = 3.283V
+VTarget = 3.285V
 State of Pins: TCK: 0, TDI: 0, TDO: 0, TMS: 1, TRES: 1, TRST: 0
 Hardware-Breakpoints: 8
 Software-Breakpoints: 8192
@@ -63,5 +63,5 @@ JTAG speed: 4000 kHz
 * JLink Info: Memory map 'after startup completion point' is active
 Erase Done.Programming Done.Verify OK.* JLink Info: OnDisconnectTarget() start
 * JLink Info: Resetting used DBGMCU registers.
-* JLink Info: OnDisconnectTarget() end - Took 3.08ms
-Flash Load finished at 22:53:11
+* JLink Info: OnDisconnectTarget() end - Took 2.87ms
+Flash Load finished at 16:08:17

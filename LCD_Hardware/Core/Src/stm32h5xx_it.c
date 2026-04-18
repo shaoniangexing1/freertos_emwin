@@ -58,6 +58,7 @@ uint8_t key1_pressed = 0;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern SPI_HandleTypeDef hspi2;
 extern UART_HandleTypeDef huart1;
 extern TIM_HandleTypeDef htim2;
 
@@ -146,7 +147,7 @@ void UsageFault_Handler(void)
 /**
   * @brief This function handles System service call via SWI instruction.
   */
-void SVC_Han1dler(void)
+void SVC_1Handler(void)
 {
   /* USER CODE BEGIN SVCall_IRQn 0 */
 
@@ -172,7 +173,7 @@ void DebugMon_Handler(void)
 /**
   * @brief This function handles Pendable request for system service.
   */
-void PendSV_H1andler(void)
+void PendSV_1Handler(void)
 {
   /* USER CODE BEGIN PendSV_IRQn 0 */
 
@@ -229,6 +230,20 @@ void TIM2_IRQHandler(void)
   /* USER CODE BEGIN TIM2_IRQn 1 */
 
   /* USER CODE END TIM2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles SPI2 global interrupt.
+  */
+void SPI2_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPI2_IRQn 0 */
+
+  /* USER CODE END SPI2_IRQn 0 */
+  HAL_SPI_IRQHandler(&hspi2);
+  /* USER CODE BEGIN SPI2_IRQn 1 */
+
+  /* USER CODE END SPI2_IRQn 1 */
 }
 
 /**

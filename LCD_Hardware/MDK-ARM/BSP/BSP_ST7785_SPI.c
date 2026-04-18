@@ -1,4 +1,4 @@
-#include "SPI.h"
+#include "BSP_ST7785_SPI.h"
 
 void SPI_Init(void)
 {

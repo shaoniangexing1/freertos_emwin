@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include "I2C.h"
-#include "SPI.h"
+#include "BSP_ST7785_SPI.h"
 #include "FreeRTOS.h"
 #include "task.h"
 
