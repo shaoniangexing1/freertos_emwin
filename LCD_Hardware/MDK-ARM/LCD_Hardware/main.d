@@ -14,6 +14,9 @@ lcd_hardware/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_dma.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_dma_ex.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_cortex.h \
+  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_adc.h \
+  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_ll_adc.h \
+  ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_adc_ex.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_crc.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_crc_ex.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_flash.h \
@@ -28,10 +31,11 @@ lcd_hardware/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart_ex.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_exti.h \
-  ..\Core\Inc\crc.h ..\Core\Inc\flash.h ..\Core\Inc\iwdg.h \
-  ..\Core\Inc\spi.h ..\Core\Inc\tim.h ..\Core\Inc\usart.h \
-  ..\Core\Inc\gpio.h Inf\Inf_ST7785_LCD.h BSP\I2C.h BSP\BSP_ST7785_SPI.h \
-  Middel\freertos\include\FreeRTOS.h Middel\freertos\FreeRTOSConfig.h \
+  ..\Core\Inc\adc.h ..\Core\Inc\crc.h ..\Core\Inc\flash.h \
+  ..\Core\Inc\iwdg.h ..\Core\Inc\spi.h ..\Core\Inc\tim.h \
+  ..\Core\Inc\usart.h ..\Core\Inc\gpio.h Inf\Inf_ST7785_LCD.h BSP\I2C.h \
+  BSP\BSP_ST7785_SPI.h Middel\freertos\include\FreeRTOS.h \
+  Middel\freertos\FreeRTOSConfig.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
   Middel\freertos\include\projdefs.h Middel\freertos\include\portable.h \
   Middel\freertos\include\deprecated_definitions.h \

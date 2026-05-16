@@ -44,8 +44,11 @@ Purpose     : Display controller configuration (single layer)
 #include "GUI.h"
 #include "LCD.h"
 #include "GUIConf.h"
-#include "I2C.h" // 你的硬件驱动头文件
+#include "LCDConf.h"
+#include "I2C.h"            // 你的硬件驱动头文件
 #include "Inf_ST7785_LCD.h" // 你的LCD操作函数头文件
+#include "Inf_ST7789_LCD.h"
+#include "ComGlobal.h"
 /*********************************************************************
  *
  *       Layer configuration (to be modified)
@@ -57,12 +60,22 @@ Purpose     : Display controller configuration (single layer)
 //   The display size should be adapted in order to match the size of
 //   the target display.
 //
+
+// 根据选择的 LCD 定义尺寸和显存
+
+#if defined(LCD_SELECT) && (LCD_SELECT == COM_LCD_BSP_ST7789)
+#define XSIZE_PHYS 240
+#define YSIZE_PHYS 240
+static U16 _aColorBuffer[XSIZE_PHYS * YSIZE_PHYS]; // 240*240*2 = 115200 字节
+U16 *gui_vram_st7789 = _aColorBuffer;
+#elif defined(LCD_SELECT) && (LCD_SELECT == COM_LCD_BSP_ST7785)
 #define XSIZE_PHYS 128
 #define YSIZE_PHYS 64
 
 // 显存缓冲区（单色屏：128x64=1024字节，按页存储：8页×128字节）
-static U8 _aLCDBuffer[YSIZE_PHYS / 8 * XSIZE_PHYS];   // 1024 字节
-U8 *gui_vram = _aLCDBuffer;   // 导出给驱动使用
+static U8 _aLCDBuffer[YSIZE_PHYS / 8 * XSIZE_PHYS]; // 1024 字节
+U8 *gui_vram = _aLCDBuffer;                         // 导出给驱动使用
+#endif
 //
 // Color conversion
 //   The color conversion functions should be selected according to
@@ -117,33 +130,28 @@ U8 *gui_vram = _aLCDBuffer;   // 导出给驱动使用
  */
 void LCD_X_Config(void)
 {
-  // 1. 初始化硬件LCD（复用你现有接口）
-  LCD_Start();    // 调用现有LCD初始化函数
-  clear_screen(); // 清屏
+#if defined(LCD_SELECT) && (LCD_SELECT == COM_LCD_BSP_ST7789)
+    // 初始化 ST7789 硬件
+    ST7789_LCD_Init();
+   // ST7789_LCD_Clear(BLACK);
+    // 设置显存地址（可选，emWin 不需要显存地址，但为了接口统一）
+    // LCD_SetVRAMAddrEx(0, (void *)_aColorBuffer);
+    LCD_SetSizeEx(0, XSIZE_PHYS, YSIZE_PHYS);
+    LCD_SetVSizeEx(0, XSIZE_PHYS, YSIZE_PHYS);
+    LCD_SetVRAMAddrEx(0, (void *)_aColorBuffer); // 设置显存地址（必须在设置尺寸后）
+#else
+    // 1. 初始化硬件LCD（复用你现有接口）
+    LCD_Start();    // 调用现有LCD初始化函数
+    clear_screen(); // 清屏
 
-  //
-  // 2. Set display driver and color conversion for 1st layer
-  //
- // GUI_DEVICE_CreateAndLink(DISPLAY_DRIVER, COLOR_CONVERSION, 0, 0);
-  // 3. 设置显存地址（emWin将绘制数据写入该缓冲区，后续同步到硬件）
-  LCD_SetVRAMAddrEx(0, (void *)_aLCDBuffer);
-  // 4. 设置显示尺寸（与 GUIConf.c 中的一致）
-  LCD_SetSizeEx(0, XSIZE_PHYS, YSIZE_PHYS);
-  LCD_SetVSizeEx(0, XSIZE_PHYS, YSIZE_PHYS);
-
-  // 5 . 设置显示方向（匹配你现有LCD的扫描方向）
-  //LCD_SetMirrorX(0, GUI_MIRROR_X | GUI_MIRROR_Y); // 按需调整，匹配硬件
-
-  //
-  // Display driver configuration
-  //
-  // if (LCD_GetSwapXY()) {
-  //   LCD_SetSizeEx (0, YSIZE_PHYS, XSIZE_PHYS);
-  //   LCD_SetVSizeEx(0, YSIZE_PHYS, XSIZE_PHYS);
-  // } else {
-  //   LCD_SetSizeEx (0, XSIZE_PHYS, YSIZE_PHYS);
-  //   LCD_SetVSizeEx(0, XSIZE_PHYS, YSIZE_PHYS);
-  // }
+    // 2. Set display driver and color conversion for 1st layer
+    // GUI_DEVICE_CreateAndLink(DISPLAY_DRIVER, COLOR_CONVERSION, 0, 0);
+    // 3. 设置显存地址（emWin将绘制数据写入该缓冲区，后续同步到硬件）
+    LCD_SetVRAMAddrEx(0, (void *)_aLCDBuffer);
+    // 4. 设置显示尺寸（与 GUIConf.c 中的一致）
+    LCD_SetSizeEx(0, XSIZE_PHYS, YSIZE_PHYS);
+    LCD_SetVSizeEx(0, XSIZE_PHYS, YSIZE_PHYS);
+#endif
 }
 
 /*********************************************************************
@@ -159,49 +167,82 @@ void LCD_X_Config(void)
 int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void *pData)
 {
 
-		printf("LCD_X_DisplayDriver: cmd=%d\n", Cmd);
-     (void)LayerIndex;
-    switch (Cmd) {
-        case LCD_X_INITCONTROLLER:
-            // 硬件初始化已在LCD_Start中完成
-            return 0;
+    printf("LCD_X_DisplayDriver: cmd=%d\n", Cmd);
+    (void)LayerIndex;
+    switch (Cmd)
+    {
+    case LCD_X_INITCONTROLLER:
+        // 硬件初始化已在LCD_Start中完成
+        return 0;
 
-        case LCD_X_SHOWBUFFER: {
-           // LCD_X_SHOWBUFFER_INFO * pInfo = (LCD_X_SHOWBUFFER_INFO *)pData;
-					printf("LCD_X_SHOWBUFFER called\n");
-            U8 * pBuffer = gui_vram;   // 指向显存
-
-            for (U8 page = 0; page < 8; page++) {
-        // 构造页地址、列地址（此处为全列刷新）
-        uchar page_addr = 0x40 + page;
-        uchar col_low = 0xe0;   // 列起始低4位（列0）
-        uchar col_high = 0xf0;  // 列起始高4位（列0）
-
-        start_flag();
-        transfer(0x7e);
-        transfer(0x00);
-        transfer(0x38);
-        transfer(page_addr);
-        transfer(col_low);
-        transfer(col_high);
-        stop_flag();
-
-        start_flag();
-        transfer(0x7e);
-        transfer(0x40);   // 数据模式
-        for (U16 col = 0; col < 128; col++) {
-            transfer(pBuffer[page * 128 + col]);
+    case LCD_X_SHOWBUFFER:
+    {
+#if defined(LCD_SELECT) && (LCD_SELECT == COM_LCD_BSP_ST7789)
+        // // 将显存 _aColorBuffer 刷新到 ST7789 硬件
+        // // 方法1：逐行发送（最快）
+         //printf("XSIZE=%d, YSIZE=%d\n", XSIZE_PHYS, YSIZE_PHYS);
+        uint16_t start_tim=HAL_GetTick();
+        LCD_X_SHOWBUFFER_INFO * pInfo = (LCD_X_SHOWBUFFER_INFO *)pData;
+        for (int y = 0; y < YSIZE_PHYS; y++)
+        {
+            ST7789_LCD_Address_Set(y, 0, y, YSIZE_PHYS - 1);//设置内容方向
+            U16 *pLine = &_aColorBuffer[y * XSIZE_PHYS];
+            for (int x = 0; x < XSIZE_PHYS; x++)
+            {
+                ST7789_LCD_WR_DATA(*pLine++);
+   
+            }
         }
-        stop_flag();
-    }
-    return 0;
+        uint16_t end_tim=HAL_GetTick();
+        printf("LCD_X_SHOWBUFFER time=%d ms\n", end_tim-start_tim);
+         // 方法2：一次性发送整个缓冲区（较慢，适合小屏）
+
+    
+
+#elif defined(LCD_SELECT) && (LCD_SELECT == COM_LCD_BSP_ST7785)
+
+        // LCD_X_SHOWBUFFER_INFO * pInfo = (LCD_X_SHOWBUFFER_INFO *)pData;
+        printf("LCD_X_SHOWBUFFER called\n");
+        U8 *pBuffer = gui_vram; // 指向显存
+
+        for (U8 page = 0; page < 8; page++)
+        {
+            // 构造页地址、列地址（此处为全列刷新）
+            uchar page_addr = 0x40 + page;
+            uchar col_low = 0xe0;  // 列起始低4位（列0）
+            uchar col_high = 0xf0; // 列起始高4位（列0）
+
+            start_flag();
+            transfer(0x7e);
+            transfer(0x00);
+            transfer(0x38);
+            transfer(page_addr);
+            transfer(col_low);
+            transfer(col_high);
+            stop_flag();
+
+            start_flag();
+            transfer(0x7e);
+            transfer(0x40); // 数据模式
+            for (U16 col = 0; col < 128; col++)
+            {
+                transfer(pBuffer[page * 128 + col]);
+            }
+            stop_flag();
         }
 
-        // 其他命令可忽略或返回-1
-        default:
-            return -1;
+#endif
+        return 0;
     }
-  }
-  
+    break;
+    
+    case LCD_X_OFF:
+        ST7789_LCD_DisplayOff();
+    break;
+    default:
+        return -1;
+    }
+    return -1;
+}
 
-  /*************************** End of file ****************************/
+/*************************** End of file ****************************/

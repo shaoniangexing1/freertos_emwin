@@ -44,11 +44,13 @@ Purpose     : Configures emWins abilities, fonts etc.
 #ifndef GUICONF_H
 #define GUICONF_H
 
+
 /*********************************************************************
 *
 *       Multi layer/display support
 */
-#define GUI_NUM_LAYERS            2    // Maximum number of available layers
+#define GUI_NUM_LAYERS            1    // Maximum number of available layers
+#define GUI_NUMBYTES              (240 * 240 * 2)     // 分配 240x240x16bit 显存
 
 /*********************************************************************
 *
@@ -57,9 +59,9 @@ Purpose     : Configures emWins abilities, fonts etc.
 //#define GUI_OS                    (1)  // Compile with multitasking support
 //#define GUI_NUMBYTES  0x800  // 单色屏显存需求小，按需调整
 #define GUI_OS        1      // 若用RTOS（如FreeRTOS，代码中有vTaskDelay），设为1
-#define LCD_WIDTH     128    // 屏幕宽度
-#define LCD_HEIGHT    64     // 屏幕高度
-#define LCD_BITSPERPIXEL 1   // 单色屏，1bit/像素
+#define LCD_WIDTH     240    // 屏幕宽度
+#define LCD_HEIGHT    240     // 屏幕高度
+#define LCD_BITSPERPIXEL 16   // 单色屏，1bit/像素
 /*********************************************************************
 *
 *       Configuration of touch support
@@ -76,7 +78,7 @@ Purpose     : Configures emWins abilities, fonts etc.
 *
 *         Configuration of available packages
 */
-#define GUI_SUPPORT_MOUSE    1    // Mouse support
+#define GUI_SUPPORT_MOUSE    0    // Mouse support
 #define GUI_WINSUPPORT       1    // Use Window Manager
 #define GUI_SUPPORT_MEMDEV   0    // Use Memory Devices
 #define GUI_SUPPORT_DEVICES  1    // Enable use of device pointers

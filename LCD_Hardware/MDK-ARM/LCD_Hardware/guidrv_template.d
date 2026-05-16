@@ -6,4 +6,22 @@ lcd_hardware/guidrv_template.o: Middel\emwin\Config\GUIDRV_Template.c \
   Middel\emwin\Inc\GUI_Type.h Middel\emwin\Inc\GUI_Version.h \
   Middel\emwin\Inc\GUI_Private.h Middel\emwin\Inc\GUI_Debug.h \
   Middel\emwin\Inc\WM_GUI.h Middel\emwin\Inc\LCD_SIM.h \
-  Middel\emwin\Inc\LCD_ConfDefaults.h
+  Middel\emwin\Inc\LCD_ConfDefaults.h Com\ComGlobal.h \
+  Middel\emwin\Inc\WM.h Middel\emwin\Inc\FRAMEWIN.h \
+  Middel\emwin\Inc\WIDGET.h Middel\emwin\Inc\SCROLLBAR.h \
+  Middel\emwin\Inc\DIALOG_Type.h Middel\emwin\Inc\TEXT.h \
+  Middel\emwin\Inc\EDIT.h Middel\emwin\Inc\DIALOG.h \
+  Middel\emwin\Inc\BUTTON.h Middel\emwin\Inc\CALENDAR.h \
+  Middel\emwin\Inc\CHECKBOX.h Middel\emwin\Inc\CHOOSECOLOR.h \
+  Middel\emwin\Inc\CHOOSEFILE.h Middel\emwin\Inc\DROPDOWN.h \
+  Middel\emwin\Inc\LISTBOX.h Middel\emwin\Inc\GAUGE.h \
+  Middel\emwin\Inc\GRAPH.h Middel\emwin\Inc\HEADER.h \
+  Middel\emwin\Inc\ICONVIEW.h Middel\emwin\Inc\IMAGE.h \
+  Middel\emwin\Inc\KEYBOARD.h Middel\emwin\Inc\KNOB.h \
+  Middel\emwin\Inc\LISTVIEW.h Middel\emwin\Inc\LISTWHEEL.h \
+  Middel\emwin\Inc\MENU.h Middel\emwin\Inc\MULTIEDIT.h \
+  Middel\emwin\Inc\MULTIPAGE.h Middel\emwin\Inc\PROGBAR.h \
+  Middel\emwin\Inc\QRCODE.h Middel\emwin\Inc\RADIO.h \
+  Middel\emwin\Inc\ROTARY.h Middel\emwin\Inc\SLIDER.h \
+  Middel\emwin\Inc\SPINBOX.h Middel\emwin\Inc\SWIPELIST.h \
+  Middel\emwin\Inc\SWITCH.h Middel\emwin\Inc\TREEVIEW.h

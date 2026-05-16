@@ -25,6 +25,8 @@
 #include "LCD_SIM.h"
 #include "LCD_ConfDefaults.h"
 #include "stdio.h"
+#include "ComGlobal.h"
+#ifdef defined(LCD_SELECT) && (LCD_SELECT == COM_LCD_BSP_ST7785)
 
 // 声明外部显存指针（在 LCDConf.c 中定义）
 extern U8 *gui_vram;
@@ -574,5 +576,6 @@ const GUI_DEVICE_API GUIDRV_Template_API = {
     _GetDevData,
     _GetRect,
 };
+#endif // DEBUG
 
 /*************************** End of file ****************************/

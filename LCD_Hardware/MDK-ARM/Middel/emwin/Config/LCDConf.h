@@ -44,6 +44,14 @@ Purpose     : Display driver configuration file
 #ifndef LCDCONF_H
 #define LCDCONF_H
 
+#define LCD_DELAY  1
+
+#define LCD_WRITE_USES_SETPIXEL 0
+#define LCD_CONTROLLER_NUM 0
+#define LCD_ALLOW_INIT_CONTROLLER  0
+#define LCD_SETBUFFERABLE         0
+#define LCD_INIT_CONTROLLER  0
+#define LCD_AUTO_REFRESH   1  // 必须加这个
 #endif /* LCDCONF_H */
 
 /*************************** End of file ****************************/

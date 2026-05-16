@@ -77,14 +77,54 @@
 #define LBBLUE           0X2B12		// 浅棕蓝色(选择条目的反色)
 
 
+//=============================================================================
+// ST7789 初始化常用宏定义
+//=============================================================================
+// 1. 像素格式 COLMOD (3Ah)
+#define ST7789_12BIT_RGB444      0x03    // 12bit 色彩
+#define ST7789_16BIT_RGB565      0x05    // 16bit RGB565（最常用）
+#define ST7789_18BIT_RGB666      0x06    // 18bit 色彩
 
+// 2. 帧率设置 FRCTRL2 (C6h)
+#define ST7789_FR_60HZ          0x0F     // 60Hz 标准刷新率
+#define ST7789_FR_50HZ          0x11     // 50Hz
+#define ST7789_FR_70HZ          0x0D     // 70Hz
 
-void ST7789_LCD_Address_Set(uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2);
+// 3. 显示反转控制 INVON/INVOFF
+#define ST7789_INV_ON           0x21     // 开启反转（防残影、底色均匀）
+#define ST7789_INV_OFF          0x20     // 关闭反转
+
+// 4. 系统命令
+#define ST7789_SLP_OUT          0x11     // 退出睡眠
+#define ST7789_DISP_ON          0x29     // 开启显示
+
+// 5. VCOM 电压调节 (BBh)
+#define ST7789_VCOM_19          0x19     // 通用默认
+#define ST7789_VCOM_15          0x15     // 偏暗
+#define ST7789_VCOM_20          0x20     // 偏亮
+
+//==================== ST7789 屏幕方向宏定义
+// 基准方向：0x20 = 0° 正常
+//====================
+#define  LCD_DIR_0         0x20    // 0°      基准（正常）
+#define  LCD_DIR_90        0x60    // 90°     顺时针旋转
+#define  LCD_DIR_180       0xE0    // 180°    旋转180°
+#define  LCD_DIR_270       0xA0    // 270°    逆时针旋转
+
+// 镜像方向（基于 0x20 基准）
+#define  LCD_MIRROR_LR     0x40    // 左右镜像（水平翻转）
+#define  LCD_MIRROR_UD     0x00    // 上下镜像（垂直翻转）
+
+void ST7789_LCD_WR_DATA8(uint8_t dat);
+
+void ST7789_LCD_WR_DATA(uint16_t dat);
+
+void ST7789_LCD_Address_Set(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 void ST7789_LCD_Clear(uint16_t Color);
 void ST7789_LCD_Init(void);
+void ST7789_LCD_DisplayOff(void);
 void ST7789_LCD_ShowString(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint8_t sizeS, uint8_t *p);
 void ST7789_LCD_ShowChar(uint16_t x, uint16_t y, uint8_t num, uint8_t sizeS);
 void ST7789_LCD_Fast_DrawPoint(uint16_t x,uint16_t y,uint16_t color);
+void ST7789_LCD_DrawLine_Width(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint8_t width, uint16_t color);
 #endif /* __INF_LCD_ST7789_H__ */
-
-

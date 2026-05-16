@@ -13,6 +13,7 @@ void DelayM(uint16_t a)
 void ST7789_SPI2_WriteByte(uint8_t Byte)
 {
 	HAL_SPI_Transmit(&hspi2, &Byte, 1, 100);
+	//HAL_SPI_Transmit_DMA(&hspi2, &Byte, 1);
 }
 
 //================写命令=======================
@@ -119,86 +120,129 @@ void ST7789_LCD_Init(void)
 	DelayM(200);
 
 	//************* Start Initial Sequence **********//
-	ST7789_LCD_WR_CMD(0x36);
-	//	ST7789_LCD_WR_DATA8(0xA0);
-	//	ST7789_LCD_WR_DATA8(0x60);
-	ST7789_LCD_WR_DATA8(0x40);
+	//==================== 0. 屏幕方向设置0x36 ====================
+	ST7789_LCD_WR_CMD(0x36);// 内存访问控制（方向/镜像/旋转）
+	ST7789_LCD_WR_DATA8(LCD_DIR_0); // 0x20 基准方向（可替换：90/180/270/镜像）
 
-	ST7789_LCD_WR_CMD(0x3A);   // 颜色设置
-	ST7789_LCD_WR_DATA8(0x05); // 04 RGB 444 05 RGB 565 06 RGB 666
+	  //=============== 1. 像素格式设置 ===============
+    ST7789_LCD_WR_CMD(0x3A);               // COLMOD：设置像素格式
+    ST7789_LCD_WR_DATA8(ST7789_16BIT_RGB565); // RGB565（16位，通用）
 
-	ST7789_LCD_WR_CMD(0xB2);
-	ST7789_LCD_WR_DATA8(0x0C);
-	ST7789_LCD_WR_DATA8(0x0C);
-	ST7789_LCD_WR_DATA8(0x00);
-	ST7789_LCD_WR_DATA8(0x33);
-	ST7789_LCD_WR_DATA8(0x33);
+    //=============== 2. 消隐周期设置 ===============
+    ST7789_LCD_WR_CMD(0xB2);               // PORCTRL：前后沿消隐设置
+    ST7789_LCD_WR_DATA8(0x0C);
+    ST7789_LCD_WR_DATA8(0x0C);
+    ST7789_LCD_WR_DATA8(0x00);
+    ST7789_LCD_WR_DATA8(0x33);
+    ST7789_LCD_WR_DATA8(0x33);
+    // 作用：消除闪烁、横纹，稳定显示时序
 
-	ST7789_LCD_WR_CMD(0xB7);
-	ST7789_LCD_WR_DATA8(0x35);
+    //=============== 3. 栅极控制 ===============
+    ST7789_LCD_WR_CMD(0xB7);               // GCTRL：栅极（行驱动）控制
+    ST7789_LCD_WR_DATA8(0x35);
+    // 作用：设置VGH/VGL电压、行扫描方向，通用屏默认0x35
 
-	ST7789_LCD_WR_CMD(0xBB);
-	ST7789_LCD_WR_DATA8(0x19);
+    //=============== 4. VCOM 公共电压 ===============
+    ST7789_LCD_WR_CMD(0xBB);               // VCOMS：设置公共极电压
+    ST7789_LCD_WR_DATA8(ST7789_VCOM_19);
+    // 作用：影响底色均匀度，值越大底色越亮
 
-	ST7789_LCD_WR_CMD(0xC0);
-	ST7789_LCD_WR_DATA8(0x2C);
+    //=============== 5. LCM 驱动控制 ===============
+    ST7789_LCD_WR_CMD(0xC0);               // LCMCTRL：液晶驱动基础设置
+    ST7789_LCD_WR_DATA8(0x2C);
 
-	ST7789_LCD_WR_CMD(0xC2);
-	ST7789_LCD_WR_DATA8(0x01);
+    //=============== 6. 使能 VRH/VDV 电压 ===============
+    ST7789_LCD_WR_CMD(0xC2);               // VDVVRHEN：开启电压调节
+    ST7789_LCD_WR_DATA8(0x01);
 
-	ST7789_LCD_WR_CMD(0xC3);
-	ST7789_LCD_WR_DATA8(0x12);
+    //=============== 7. VRH 电压设置 ===============
+    ST7789_LCD_WR_CMD(0xC3);               // VRHS：对比度核心电压
+    ST7789_LCD_WR_DATA8(0x12);
 
-	ST7789_LCD_WR_CMD(0xC4);
-	ST7789_LCD_WR_DATA8(0x20);
+    //=============== 8. VDV 电压设置 ===============
+    ST7789_LCD_WR_CMD(0xC4);               // VDVS：对比度微调
+    ST7789_LCD_WR_DATA8(0x20);
 
-	ST7789_LCD_WR_CMD(0xC6);
-	ST7789_LCD_WR_DATA8(0x0F);
+    //=============== 9. 帧率设置 ===============
+    ST7789_LCD_WR_CMD(0xC6);               // FRCTRL2：刷新率设置
+    ST7789_LCD_WR_DATA8(ST7789_FR_70HZ);   // 60Hz 最稳定
 
-	ST7789_LCD_WR_CMD(0xD0);
-	ST7789_LCD_WR_DATA8(0xA4);
-	ST7789_LCD_WR_DATA8(0xA1);
+    //=============== 10. 电源控制 ===============
+    ST7789_LCD_WR_CMD(0xD0);               // PWRCTRL1：电源&升压设置
+    ST7789_LCD_WR_DATA8(0xA4);
+    ST7789_LCD_WR_DATA8(0xA1);
+    // 通用出厂配置，基本无需修改
 
-	ST7789_LCD_WR_CMD(0xE0);
-	ST7789_LCD_WR_DATA8(0xD0);
-	ST7789_LCD_WR_DATA8(0x04);
-	ST7789_LCD_WR_DATA8(0x0D);
-	ST7789_LCD_WR_DATA8(0x11);
-	ST7789_LCD_WR_DATA8(0x13);
-	ST7789_LCD_WR_DATA8(0x2B);
-	ST7789_LCD_WR_DATA8(0x3F);
-	ST7789_LCD_WR_DATA8(0x54);
-	ST7789_LCD_WR_DATA8(0x4C);
-	ST7789_LCD_WR_DATA8(0x18);
-	ST7789_LCD_WR_DATA8(0x0D);
-	ST7789_LCD_WR_DATA8(0x0B);
-	ST7789_LCD_WR_DATA8(0x1F);
-	ST7789_LCD_WR_DATA8(0x23);
+    //=============== 11. 正极伽马校正 ===============
+    ST7789_LCD_WR_CMD(0xE0);               // GMCTRP1：正极性伽马
+    ST7789_LCD_WR_DATA8(0xD0);
+    ST7789_LCD_WR_DATA8(0x04);
+    ST7789_LCD_WR_DATA8(0x0D);
+    ST7789_LCD_WR_DATA8(0x11);
+    ST7789_LCD_WR_DATA8(0x13);
+    ST7789_LCD_WR_DATA8(0x2B);
+    ST7789_LCD_WR_DATA8(0x3F);
+    ST7789_LCD_WR_DATA8(0x54);
+    ST7789_LCD_WR_DATA8(0x4C);
+    ST7789_LCD_WR_DATA8(0x18);
+    ST7789_LCD_WR_DATA8(0x0D);
+    ST7789_LCD_WR_DATA8(0x0B);
+    ST7789_LCD_WR_DATA8(0x1F);
+    ST7789_LCD_WR_DATA8(0x23);
+    // 作用：调整亮部/暗部层次、色彩过渡
 
-	ST7789_LCD_WR_CMD(0xE1);
-	ST7789_LCD_WR_DATA8(0xD0);
-	ST7789_LCD_WR_DATA8(0x04);
-	ST7789_LCD_WR_DATA8(0x0C);
-	ST7789_LCD_WR_DATA8(0x11);
-	ST7789_LCD_WR_DATA8(0x13);
-	ST7789_LCD_WR_DATA8(0x2C);
-	ST7789_LCD_WR_DATA8(0x3F);
-	ST7789_LCD_WR_DATA8(0x44);
-	ST7789_LCD_WR_DATA8(0x51);
-	ST7789_LCD_WR_DATA8(0x2F);
-	ST7789_LCD_WR_DATA8(0x1F);
-	ST7789_LCD_WR_DATA8(0x1F);
-	ST7789_LCD_WR_DATA8(0x20);
-	ST7789_LCD_WR_DATA8(0x23);
+    //=============== 12. 负极伽马校正 ===============
+    ST7789_LCD_WR_CMD(0xE1);               // GMCTRN1：负极性伽马
+    ST7789_LCD_WR_DATA8(0xD0);
+    ST7789_LCD_WR_DATA8(0x04);
+    ST7789_LCD_WR_DATA8(0x0C);
+    ST7789_LCD_WR_DATA8(0x11);
+    ST7789_LCD_WR_DATA8(0x13);
+    ST7789_LCD_WR_DATA8(0x2C);
+    ST7789_LCD_WR_DATA8(0x3F);
+    ST7789_LCD_WR_DATA8(0x44);
+    ST7789_LCD_WR_DATA8(0x51);
+    ST7789_LCD_WR_DATA8(0x2F);
+    ST7789_LCD_WR_DATA8(0x1F);
+    ST7789_LCD_WR_DATA8(0x1F);
+    ST7789_LCD_WR_DATA8(0x20);
+    ST7789_LCD_WR_DATA8(0x23);
+    // 与E0配对，保证正负电压对称，显示均匀无残影
 
-	ST7789_LCD_WR_CMD(0x21); // Display inversion on
+    //=============== 13. 显示反转使能 ===============
+    ST7789_LCD_WR_CMD(ST7789_INV_ON);
+    // 开启反转：防止液晶极化，底色更均匀，减少残影
 
-	ST7789_LCD_WR_CMD(0x11); // Sleep out
-	HAL_Delay(120);
+    //=============== 14. 退出睡眠模式 ===============
+    ST7789_LCD_WR_CMD(ST7789_SLP_OUT);
+    HAL_Delay(120);    // 手册强制要求：SLPOUT后至少等待120ms
 
-	ST7789_LCD_WR_CMD(0x29); // 显示开
-	// ST7789_LCD_BG=0; //ykk没有设置引脚
-	ST7789_LCD_Clear(GREEN);
+    //=============== 15. 开启显示 ===============
+    ST7789_LCD_WR_CMD(ST7789_DISP_ON);
+
+	//清屏
+	//ST7789_LCD_Clear(GREEN);//
+
+	
+}
+void ST7789_LCD_DisplayOff(void)
+{
+    // 1. 选中LCD设备
+    LCD_ST7789_CS_LOW; // 片选拉低，选中LCD
+    
+    // 2. 先关显示，再进睡眠（避免睡眠过程中画面异常）
+    ST7789_LCD_WR_CMD(0x28);  // 关显示输出
+    ST7789_LCD_WR_CMD(0x10);  // 进入睡眠模式，关闭内部振荡器
+    
+    // 3. 释放SPI总线
+    LCD_ST7789_CS_HIGH; // 片选拉高，释放总线
+    
+    // 4. 强制延时120ms，ST7789 datasheet强制要求
+    // FreeRTOS环境可替换为：vTaskDelay(pdMS_TO_TICKS(120));
+    HAL_Delay(120);
+
+    // 【可选】关闭背光（你的背光引脚可控时添加）
+    // HAL_GPIO_WritePin(LCD_BLK_GPIO_Port, LCD_BLK_Pin, GPIO_PIN_RESET);
 }
 
 //快速画点
@@ -214,14 +258,62 @@ void ST7789_LCD_Fast_DrawPoint(uint16_t x,uint16_t y,uint16_t color)
 
 	ST7789_LCD_WR_CMD(0x2a);//列地址设置
 	ST7789_LCD_WR_DATA(x);
-	ST7789_LCD_WR_DATA(x+1);
+	ST7789_LCD_WR_DATA(x);
 	ST7789_LCD_WR_CMD(0x2b);//行地址设置
 	ST7789_LCD_WR_DATA(y);
-	ST7789_LCD_WR_DATA(y+1);
+	ST7789_LCD_WR_DATA(y);
 
 
 	ST7789_LCD_WR_CMD(0x2C);		//储存器写
 	ST7789_LCD_WR_DATA(color);		//写数据
+}
+/******************************************************************************
+* 函数名：ST7789_LCD_DrawLine_Width
+* 功  能：画任意角度、可设置线宽的直线
+* 参  数：x1,y1  起点
+*         x2,y2  终点
+*         width  线宽（1~任意）
+*         color  颜色
+******************************************************************************/
+void ST7789_LCD_DrawLine_Width(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint8_t width, uint16_t color)
+{
+	     int16_t dx = abs(x2 - x1);
+    int16_t dy = abs(y2 - y1);
+    int16_t sx = x1 < x2 ? 1 : -1;
+    int16_t sy = y1 < y2 ? 1 : -1;
+    int16_t err = dx - dy;
+    int16_t e2;
+    int16_t w;
+
+    int hw = width / 2;
+
+    while (1)
+    {
+        // ==============================================
+        // 核心：适配你屏幕 XY 互换，直接反写 x/y
+        // ==============================================
+        for (w = -hw; w <= hw; w++)
+        {
+            if (dx >= dy)
+                ST7789_LCD_Fast_DrawPoint(y1 + w, x1, color);
+            else
+                ST7789_LCD_Fast_DrawPoint(y1, x1 + w, color);
+        }
+
+        if (x1 == x2 && y1 == y2) break;
+
+        e2 = err * 2;
+        if (e2 > -dy)
+        {
+            err -= dy;
+            x1 += sx;
+        }
+        if (e2 < dx)
+        {
+            err += dx;
+            y1 += sy;
+        }
+    }
 }
 
 void Set_addr(uint16_t x, uint16_t y, uint8_t size)
@@ -234,7 +326,7 @@ void Set_addr(uint16_t x, uint16_t y, uint8_t size)
 	ST7789_LCD_WR_DATA(y + size - 1);
 	ST7789_LCD_WR_CMD(0x2b); // 行地址设置
 	ST7789_LCD_WR_DATA(x);
-	ST7789_LCD_WR_DATA(x + size / 2 - 1);
+	ST7789_LCD_WR_DATA(x + size/2 - 1);
 	ST7789_LCD_WR_CMD(0x2C);
 }
 
@@ -310,10 +402,10 @@ void ST7789_LCD_ShowChar(uint16_t x, uint16_t y, uint8_t num, uint8_t sizeS)
 		for (a1 = 0; a1 < 8; a1++)
 		{
 			if (temp & 0x80)
-				ST7789_LCD_WR_DATA(0x0000);
+				ST7789_LCD_WR_DATA(BLACK);//背景颜色
 
 			else
-				ST7789_LCD_WR_DATA(0xffff);
+				ST7789_LCD_WR_DATA(WHITE); //字体颜色
 			temp <<= 1;
 			x1++;
 			if ((x1 - x2) == sizeS)

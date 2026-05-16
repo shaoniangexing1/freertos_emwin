@@ -8,6 +8,8 @@
 #include "stdio.h"
 #include "WM.h"
 
+extern void SPI2_Init_Set_Prescaler(uint32_t prescaler);
+
 void app_start(void);
 
 

@@ -147,7 +147,7 @@ void UsageFault_Handler(void)
 /**
   * @brief This function handles System service call via SWI instruction.
   */
-void SVC_1Handler(void)
+void SVC_Han1dler(void)
 {
   /* USER CODE BEGIN SVCall_IRQn 0 */
 
@@ -173,7 +173,7 @@ void DebugMon_Handler(void)
 /**
   * @brief This function handles Pendable request for system service.
   */
-void PendSV_1Handler(void)
+void PendSV_H1andler(void)
 {
   /* USER CODE BEGIN PendSV_IRQn 0 */
 
@@ -274,6 +274,47 @@ int fputc(int ch, FILE *file)
   HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 1000);
 
   return ch;
+}
+
+/*
+ *  ջ������Ӻ���
+ *  xTask     �������������
+ *  pcTaskName����������
+ */
+void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
+{
+    uint32_t R0, R1, R2, R3, LR, PC, xPSR;
+
+    // �ر��ж�
+    portDISABLE_INTERRUPTS();
+
+    // ��ȡ CPU �Ĵ�����Cortex-M ��׼����ȡ��
+    __asm volatile ("MOV %0, R0" : "=r"(R0));
+    __asm volatile ("MOV %0, R1" : "=r"(R1));
+    __asm volatile ("MOV %0, R2" : "=r"(R2));
+    __asm volatile ("MOV %0, R3" : "=r"(R3));
+    __asm volatile ("MOV %0, LR" : "=r"(LR));
+    __asm volatile ("MOV %0, PC" : "=r"(PC));
+    __asm volatile ("MRS %0, xPSR" : "=r"(xPSR));
+
+    // �����־��100% �ޱ������
+    printf("\r\n===== STACK OVERFLOW =====\r\n");
+    printf("Task crashed: %s\r\n", pcTaskName);
+    printf("MCU State: Halted\r\n");
+    printf("Cause: Task stack overflow\r\n\r\n");
+
+    printf("Registers:\r\n");
+    printf("R0    = 0x%08X\r\n", R0);
+    printf("R1    = 0x%08X\r\n", R1);
+    printf("R2    = 0x%08X\r\n", R2);
+    printf("R3    = 0x%08X\r\n", R3);
+    printf("LR    = 0x%08X  (Return address)\r\n", LR);
+    printf("PC    = 0x%08X  (Program counter)\r\n", PC);
+    printf("xPSR  = 0x%08X  (Status register)\r\n", xPSR);
+    printf("==========================\r\n");
+
+	// ����������������
+	while(1);
 }
 
 /* USER CODE END 1 */

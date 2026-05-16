@@ -119,5 +119,8 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
-
+void GPIO_SPI2_Heigt_Init(void){
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+  
+}
 /* USER CODE END 2 */
