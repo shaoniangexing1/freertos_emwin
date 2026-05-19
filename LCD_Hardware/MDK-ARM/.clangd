@@ -1,0 +1,9 @@
+CompileFlags:
+  Add:
+    - -IC:\Apps\Keil543\Arm\ARM/include
+    - -IC:\Apps\Keil543\Arm\ARM/include/libcxx
+    - -IC:\Apps\Keil543\Arm\ARM\ARMCLANG/include
+    - -IC:\Apps\Keil543\Arm\ARM\ARMCLANG/include/libcxx
+  Remove: []
+  CompilationDatabase: ./build/LCD_Hardware
+  Compiler: C:\Apps\Keil543\Arm\ARM\ARMCLANG\bin\armclang.exe

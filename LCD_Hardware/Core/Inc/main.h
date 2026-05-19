@@ -57,6 +57,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define FT6236U_INT_Pin GPIO_PIN_13
+#define FT6236U_INT_GPIO_Port GPIOC
+#define FT6236U_INT_EXTI_IRQn EXTI13_IRQn
 #define IC_SCK_Pin GPIO_PIN_2
 #define IC_SCK_GPIO_Port GPIOC
 #define IC_MOSI_Pin GPIO_PIN_3

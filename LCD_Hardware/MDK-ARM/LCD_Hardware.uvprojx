@@ -1578,6 +1578,11 @@
               <FileType>1</FileType>
               <FilePath>.\Inf\Inf_ST7789_LCD.c</FilePath>
             </File>
+            <File>
+              <FileName>Inf_FT6236.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Inf\Inf_FT6236.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

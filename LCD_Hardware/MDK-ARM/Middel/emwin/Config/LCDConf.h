@@ -51,7 +51,7 @@ Purpose     : Display driver configuration file
 #define LCD_ALLOW_INIT_CONTROLLER  0
 #define LCD_SETBUFFERABLE         0
 #define LCD_INIT_CONTROLLER  0
-#define LCD_AUTO_REFRESH   1  // ±ØÐë¼ÓÕâ¸ö
+#define LCD_AUTO_REFRESH   1  // å¿…é¡»åŠ è¿™ä¸ª
 #endif /* LCDCONF_H */
 
 /*************************** End of file ****************************/

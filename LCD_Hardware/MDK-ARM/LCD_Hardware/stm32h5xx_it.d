@@ -38,4 +38,6 @@ lcd_hardware/stm32h5xx_it.o: ..\Core\Src\stm32h5xx_it.c \
   Middel\freertos\include\deprecated_definitions.h \
   Middel\freertos\portable\portmacro.h \
   Middel\freertos\include\mpu_wrappers.h Middel\freertos\include\task.h \
-  Middel\freertos\include\list.h
+  Middel\freertos\include\list.h Inf\Inf_FT6236.h Inf\Inf_ST7785_LCD.h \
+  BSP\I2C.h ..\Core\Inc\gpio.h BSP\BSP_ST7785_SPI.h Com\Debug.h \
+  ..\Core\Inc\usart.h

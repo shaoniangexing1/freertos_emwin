@@ -1,0 +1,25 @@
+{
+    "folders": [
+        {
+            "name": "LCD_Hardware",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "EIDE.ARM.ARMCC6.InstallDirectory": "C:\\Apps\\Keil543\\Arm\\ARM",
+        "EIDE.ARM.ARMCC5.InstallDirectory": "C:\\Apps\\Keil543\\Arm",
+        "files.associations": {
+            "i2c.h": "c",
+            "stdint.h": "c",
+            "gpio.h": "c",
+            "lcd.h": "c",
+            "spi.h": "c"
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "cl.eide",
+            "ms-vscode.cpptools"
+        ]
+    }
+}

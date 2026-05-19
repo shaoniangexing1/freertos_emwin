@@ -64,4 +64,5 @@ lcd_hardware/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   Middel\emwin\Inc\RADIO.h Middel\emwin\Inc\ROTARY.h \
   Middel\emwin\Inc\SLIDER.h Middel\emwin\Inc\SPINBOX.h \
   Middel\emwin\Inc\SWIPELIST.h Middel\emwin\Inc\SWITCH.h \
-  Middel\emwin\Inc\TREEVIEW.h Inf\Inf_ST7789_LCD.h
+  Middel\emwin\Inc\TREEVIEW.h Inf\Inf_FT6236.h Com\Debug.h \
+  Inf\Inf_ST7789_LCD.h

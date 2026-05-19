@@ -25,6 +25,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "stdio.h"
+#include "Inf_FT6236.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -147,7 +148,7 @@ void UsageFault_Handler(void)
 /**
   * @brief This function handles System service call via SWI instruction.
   */
-void SVC_Han1dler(void)
+void SVC_Hand1ler(void)
 {
   /* USER CODE BEGIN SVCall_IRQn 0 */
 
@@ -173,7 +174,7 @@ void DebugMon_Handler(void)
 /**
   * @brief This function handles Pendable request for system service.
   */
-void PendSV_H1andler(void)
+void PendSV_Han1dler(void)
 {
   /* USER CODE BEGIN PendSV_IRQn 0 */
 
@@ -186,7 +187,7 @@ void PendSV_H1andler(void)
 /**
   * @brief This function handles System tick timer.
   */
-void SysTick_1Handler(void)
+void SysTick_H1andler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
@@ -216,6 +217,20 @@ void EXTI1_IRQHandler(void)
   /* USER CODE BEGIN EXTI1_IRQn 1 */
 
   /* USER CODE END EXTI1_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI Line13 interrupt.
+  */
+void EXTI13_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI13_IRQn 0 */
+
+  /* USER CODE END EXTI13_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(FT6236U_INT_Pin);
+  /* USER CODE BEGIN EXTI13_IRQn 1 */
+
+  /* USER CODE END EXTI13_IRQn 1 */
 }
 
 /**
@@ -267,7 +282,12 @@ void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin)
   {
     /* Handle KEY1 press event here */
     key1_pressed = 1;
-  }
+  }else if(GPIO_Pin == FT6236U_INT_Pin){
+		delay_us(10);
+		if(HAL_GPIO_ReadPin(FT6236U_INT_GPIO_Port,FT6236U_INT_Pin)==GPIO_PIN_RESET){
+			TPR_Structure.TouchSta |= TP_COORD_UD;				//置位触摸标志位
+		}
+	}
 }
 int fputc(int ch, FILE *file)
 {
@@ -277,18 +297,18 @@ int fputc(int ch, FILE *file)
 }
 
 /*
- *  ջ������Ӻ���
- *  xTask     �������������
- *  pcTaskName����������
+ *  ???????????
+ *  xTask     ?????????????
+ *  pcTaskName??????????
  */
 void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
 {
     uint32_t R0, R1, R2, R3, LR, PC, xPSR;
 
-    // �ر��ж�
+    // ????ж?
     portDISABLE_INTERRUPTS();
 
-    // ��ȡ CPU �Ĵ�����Cortex-M ��׼����ȡ��
+    // ??? CPU ???????Cortex-M ??????????
     __asm volatile ("MOV %0, R0" : "=r"(R0));
     __asm volatile ("MOV %0, R1" : "=r"(R1));
     __asm volatile ("MOV %0, R2" : "=r"(R2));
@@ -297,7 +317,7 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
     __asm volatile ("MOV %0, PC" : "=r"(PC));
     __asm volatile ("MRS %0, xPSR" : "=r"(xPSR));
 
-    // �����־��100% �ޱ������
+    // ????????100% ????????
     printf("\r\n===== STACK OVERFLOW =====\r\n");
     printf("Task crashed: %s\r\n", pcTaskName);
     printf("MCU State: Halted\r\n");
@@ -313,7 +333,7 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
     printf("xPSR  = 0x%08X  (Status register)\r\n", xPSR);
     printf("==========================\r\n");
 
-	// ����������������
+	// ?????????????????
 	while(1);
 }
 

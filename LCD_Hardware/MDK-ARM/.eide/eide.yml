@@ -1,0 +1,284 @@
+version: "4.1"
+name: LCD_Hardware
+type: ARM
+deviceName: null
+packDir: null
+srcDirs: []
+virtualFolder:
+  name: <virtual_root>
+  files: []
+  folders:
+    - name: Application
+      files: []
+      folders:
+        - name: MDK-ARM
+          files:
+            - path: startup_stm32h562xx.s
+          folders: []
+        - name: User
+          files: []
+          folders:
+            - name: Core
+              files:
+                - path: ../Core/Src/main.c
+                - path: ../Core/Src/gpio.c
+                - path: ../Core/Src/adc.c
+                - path: ../Core/Src/crc.c
+                - path: ../Core/Src/flash.c
+                - path: ../Core/Src/iwdg.c
+                - path: ../Core/Src/spi.c
+                - path: ../Core/Src/tim.c
+                - path: ../Core/Src/usart.c
+                - path: ../Core/Src/stm32h5xx_it.c
+                - path: ../Core/Src/stm32h5xx_hal_msp.c
+                - path: ../Core/Src/stm32h5xx_hal_timebase_tim.c
+              folders: []
+    - name: Drivers
+      files: []
+      folders:
+        - name: STM32H5xx_HAL_Driver
+          files:
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_tim.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_tim_ex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_adc.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_adc_ex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_rcc.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_rcc_ex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_flash.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_flash_ex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_gpio.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_pwr.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_pwr_ex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_cortex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_exti.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_crc.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_crc_ex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_iwdg.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_spi.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_spi_ex.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c
+            - path: ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart_ex.c
+          folders: []
+        - name: CMSIS
+          files:
+            - path: ../Core/Src/system_stm32h5xx.c
+          folders: []
+    - name: App
+      files:
+        - path: App/app.c
+      folders: []
+    - name: Inf
+      files:
+        - path: Inf/Inf_ST7785_LCD.c
+        - path: Inf/Inf_ST7789_LCD.c
+      folders: []
+    - name: BSP
+      files:
+        - path: BSP/I2C.c
+        - path: BSP/BSP_ST7785_SPI.c
+      folders: []
+    - name: Mid
+      files: []
+      folders:
+        - name: FreeRtos
+          files:
+            - path: Middel/freertos/FreeRTOSConfig.h
+            - path: Middel/freertos/croutine.c
+            - path: Middel/freertos/event_groups.c
+            - path: Middel/freertos/list.c
+            - path: Middel/freertos/queue.c
+            - path: Middel/freertos/stream_buffer.c
+            - path: Middel/freertos/tasks.c
+            - path: Middel/freertos/timers.c
+            - path: Middel/freertos/portable/heap_4.c
+            - path: Middel/freertos/portable/port.c
+            - path: Middel/freertos/portable/portasm.c
+          folders: []
+        - name: emwin
+          files: []
+          folders:
+            - name: config
+              files:
+                - path: Middel/emwin/Config/GUI_X_Touch_Analog.c
+                - path: Middel/emwin/Config/GUIConf.c
+                - path: Middel/emwin/Config/GUIDRV_Template.c
+                - path: Middel/emwin/Config/LCDConf.c
+                - path: Middel/emwin/Config/GUIDRV_Template_ST7789.c
+              folders: []
+            - name: Lib
+              files:
+                - path: Middel/emwin/Lib/ARM/GUI_CM3_L.lib
+                - path: Middel/emwin/Lib/ARM/GUI_CM4F_L.lib
+              folders: []
+            - name: OS
+              files:
+                - path: Middel/emwin/OS/GUI_X_FreeRTOS.c
+              folders: []
+            - name: Module
+              files:
+                - path: Middel/emwin/GUI_NEW_Block/EditModule.c
+              folders: []
+    - name: Com
+      files:
+        - path: Com/Debug.c
+      folders: []
+    - name: ::CMSIS
+      files: []
+      folders: []
+dependenceList: []
+outDir: build
+miscInfo:
+  uid: 59955961074c2e2245693e0959c8aadf
+targets:
+  LCD_Hardware:
+    cppPreprocessAttrs:
+      defineList:
+        - USE_HAL_DRIVER
+        - STM32H562xx
+      incList:
+        - ../Core/Inc
+        - ../Drivers/STM32H5xx_HAL_Driver/Inc
+        - ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy
+        - ../Drivers/CMSIS/Device/ST/STM32H5xx/Include
+        - ../Drivers/CMSIS/Include
+        - Inf
+        - BSP
+        - Middel/freertos
+        - Middel/freertos/include
+        - Middel/freertos/portable
+        - App
+        - Middel/emwin/Config
+        - Middel/emwin/Inc
+        - Middel/emwin/Lib/ARM
+        - Middel/emwin/OS
+        - Middel/emwin/GUI_NEW_Block
+        - Com
+        - .cmsis/include
+        - RTE/_LCD_Hardware
+      libList: []
+    excludeList: []
+    settings:
+      debugger: cortex-debug
+    toolchain: AC6
+    toolchainConfigMap:
+      AC6:
+        archExtensions: ""
+        cpuType: Cortex-M33
+        floatingPointHardware: single
+        options:
+          version: 3
+          afterBuildTasks: []
+          asm-compiler:
+            $use: asm-auto
+            defines: []
+            misc-controls: ""
+          beforeBuildTasks: []
+          c/cpp-compiler:
+            language-c: c99
+            language-cpp: c++11
+            link-time-optimization: false
+            one-elf-section-per-function: true
+            optimization: level-0
+            plain-char-is-signed: true
+            short-enums#wchar: true
+            warnings: ac5-like-warnings
+          global:
+            output-debug-info: enable
+            use-microLIB: true
+          linker:
+            $outputTaskExcludes:
+              - .bin
+            misc-controls: --diag_suppress=L6329
+            output-format: elf
+            ro-base: ""
+            rw-base: ""
+            xo-base: ""
+        scatterFilePath: ""
+        storageLayout:
+          RAM:
+            - id: 1
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 2
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 3
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 1
+              isChecked: true
+              mem:
+                size: "0xa0000"
+                startAddr: "0x20000000"
+              noInit: false
+              tag: IRAM
+            - id: 2
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: IRAM
+          ROM:
+            - id: 1
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 2
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 3
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 1
+              isChecked: true
+              isStartup: true
+              mem:
+                size: "0x200000"
+                startAddr: "0x8000000"
+              tag: IROM
+            - id: 2
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: IROM
+        useCustomScatterFile: false
+    uploadConfigMap:
+      JLink:
+        baseAddr: ""
+        bin: ""
+        cpuInfo:
+          cpuName: "null"
+          vendor: "null"
+        otherCmds: ""
+        proType: 1
+        speed: 8000
+    uploader: JLink

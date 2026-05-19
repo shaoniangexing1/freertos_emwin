@@ -1,11 +1,11 @@
 #include "ComGlobal.h"
 
 //=============================
-// ¿Ø¼þID
+// æŽ§ä»¶ID
 //=============================
-#define ID_WIN_BASE (GUI_ID_USER + 0x00)   // ºÚÉ«±³¾°¸¸´°¿Ú
-#define ID_TEXT_TITLE (GUI_ID_USER + 0x01) // ±êÌâ
-#define ID_EDIT_INPUT (GUI_ID_USER + 0x02) // ±à¼­¿ò
+#define ID_WIN_BASE (GUI_ID_USER + 0x00)   // é»‘è‰²èƒŒæ™¯çˆ¶çª—å£
+#define ID_TEXT_TITLE (GUI_ID_USER + 0x01) // æ ‡é¢˜
+#define ID_EDIT_INPUT (GUI_ID_USER + 0x02) // ç¼–è¾‘æ¡†
 
 #define WIDTH 128
 #define HIGHT 64
@@ -20,23 +20,23 @@
 #define WIN_HIGHT HIGHT_64
 #endif
 //=============================
-// ¿Ø¼þ´´½¨±í
+// æŽ§ä»¶åˆ›å»ºè¡¨
 //=============================
 #if defined(LCD_SELECT) && (LCD_SELECT == COM_LCD_BSP_ST7785)
 static const GUI_WIDGET_CREATE_INFO _aCreateInfo[] = {
 
     // ==============================================
-    // 1. ÏÈ´´½¨¡¾ºÚÉ«±³¾°¸¸´°¿Ú¡¿£¨ÎÞ±êÌâÀ¸¡¢´¿µ×É«£©
+    // 1. å…ˆåˆ›å»ºã€é»‘è‰²èƒŒæ™¯çˆ¶çª—å£ã€‘ï¼ˆæ— æ ‡é¢˜æ ã€çº¯åº•è‰²ï¼‰
     // ==============================================
     {WINDOW_CreateIndirect, "COM", ID_WIN_BASE, 0, 0, WIN_WIDTH, WIN_HIGHT, 0, 0, 0},
 
     // ==============================================
-    // 2. ±êÌâÎÄ±¾
+    // 2. æ ‡é¢˜æ–‡æœ¬
     // ==============================================
     {TEXT_CreateIndirect, "Edit Module", ID_TEXT_TITLE, 5, 0, WIN_WIDTH, 50, 0, 0, 0},
 
     // ==============================================
-    // 3. ±à¼­¿ò
+    // 3. ç¼–è¾‘æ¡†
     // ==============================================
     {EDIT_CreateIndirect, "", ID_EDIT_INPUT, 16, 24, 200, 12, 0, 0, 0},
 };
@@ -44,24 +44,24 @@ static const GUI_WIDGET_CREATE_INFO _aCreateInfo[] = {
 static const GUI_WIDGET_CREATE_INFO _aCreateInfo[] = {
 
     // ==============================================
-    // 1. ÏÈ´´½¨¡¾ºÚÉ«±³¾°¸¸´°¿Ú¡¿£¨ÎÞ±êÌâÀ¸¡¢´¿µ×É«£©
+    // 1. å…ˆåˆ›å»ºã€é»‘è‰²èƒŒæ™¯çˆ¶çª—å£ã€‘ï¼ˆæ— æ ‡é¢˜æ ã€çº¯åº•è‰²ï¼‰
     // ==============================================
     {WINDOW_CreateIndirect, "COM", ID_WIN_BASE, 0, 0, WIN_WIDTH, WIN_HIGHT, 0, 0, 0},
 
     // ==============================================
-    // 2. ±êÌâÎÄ±¾
+    // 2. æ ‡é¢˜æ–‡æœ¬
     // ==============================================
     {TEXT_CreateIndirect, "Edit Module", ID_TEXT_TITLE, 5, 0, WIN_WIDTH, 50, 0, 0, 0},
 
     // ==============================================
-    // 3. ±à¼­¿ò
+    // 3. ç¼–è¾‘æ¡†
     // ==============================================
     {EDIT_CreateIndirect, "", ID_EDIT_INPUT, 16, 100, 200, 12, 0, 0, 0},
 };
 #endif
 
 //=============================
-// ¶Ô»°¿ò»Øµ÷
+// å¯¹è¯æ¡†å›žè°ƒ
 //=============================
 static void _cbDialog(WM_MESSAGE *pMsg)
 {
@@ -78,31 +78,31 @@ static void _cbDialog(WM_MESSAGE *pMsg)
         hDlg = pMsg->hWin;
 
         // --------------------------
-        // ¸¸´°¿Ú£ººÚÉ«±³¾° + ÎÞ±ß¿ò
+        // çˆ¶çª—å£ï¼šé»‘è‰²èƒŒæ™¯ + æ— è¾¹æ¡†
         // --------------------------
         // hWin = WM_GetDialogItem(hDlg, ID_WIN_BASE);
 
-        // ÉèÖÃ±³¾°É«
+        // è®¾ç½®èƒŒæ™¯è‰²
         // WINDOW_SetBkColor(hWin, GUI_WHITE);
 
         // --------------------------
-        // ±êÌâ£º°×É«×ÖÌå
+        // æ ‡é¢˜ï¼šç™½è‰²å­—ä½“
         // --------------------------
         hWin = WM_GetDialogItem(hDlg, ID_TEXT_TITLE);
         TEXT_SetFont(hWin, &GUI_Font6x8);
         TEXT_SetTextColor(hWin, GUI_BLACK);
         TEXT_SetTextAlign(hWin, GUI_TA_LEFT | GUI_TA_VCENTER);
-        TEXT_SetText(hWin, "EDIT_TEXT"); // <-- ÉèÖÃ±êÌâÎÄ±¾
+        TEXT_SetText(hWin, "EDIT_TEXT"); // <-- è®¾ç½®æ ‡é¢˜æ–‡æœ¬
 
         // --------------------------
-        // ±à¼­¿ò£ººÚµ×°××Ö
+        // ç¼–è¾‘æ¡†ï¼šé»‘åº•ç™½å­—
         // --------------------------
         hWin = WM_GetDialogItem(hDlg, ID_EDIT_INPUT);
-        EDIT_SetFont(hWin, &GUI_Font6x8);      // Ö»ÄÜÊ¹ÓÃÕâ¸ö×ÖºÅµÄ×ÖÌå
-        EDIT_SetBkColor(hWin, 0, GUI_WHITE);   // ±³¾°ºÚ
-        EDIT_SetTextColor(hWin, 0, GUI_BLACK); // ×ÖÌå°×GUI_BLACK
+        EDIT_SetFont(hWin, &GUI_Font6x8);      // åªèƒ½ä½¿ç”¨è¿™ä¸ªå­—å·çš„å­—ä½“
+        EDIT_SetBkColor(hWin, 0, GUI_WHITE);   // èƒŒæ™¯é»‘
+        EDIT_SetTextColor(hWin, 0, GUI_BLACK); // å­—ä½“ç™½GUI_BLACK
         EDIT_SetTextAlign(hWin, GUI_TA_CENTER | GUI_TA_VCENTER);
-        EDIT_SetText(hWin, " "); // <-- ÉèÖÃ±à¼­¿òÄÚÈÝ
+        EDIT_SetText(hWin, " "); // <-- è®¾ç½®ç¼–è¾‘æ¡†å†…å®¹
         WM_SetFocus(hWin);
          GUI_Exec();
         break;
@@ -114,7 +114,7 @@ static void _cbDialog(WM_MESSAGE *pMsg)
 }
 
 //=============================
-// ´´½¨½çÃæ£¨¶ÔÍâ½Ó¿Ú£©
+// åˆ›å»ºç•Œé¢ï¼ˆå¯¹å¤–æŽ¥å£ï¼‰
 //=============================
 WM_HWIN EditModule_Create(void)
 {
@@ -122,7 +122,7 @@ WM_HWIN EditModule_Create(void)
     int ySize = LCD_GetYSize();
     // printf("Desktop size: %d x %d\n", xSize, ySize);
 
-    // ÊÖ¶¯ÉèÖÃ×ÀÃæ´°¿Ú´óÐ¡ÎªÈ«ÆÁ£¨Èç¹û²»¶Ô£©
+    // æ‰‹åŠ¨è®¾ç½®æ¡Œé¢çª—å£å¤§å°ä¸ºå…¨å±ï¼ˆå¦‚æžœä¸å¯¹ï¼‰
     // printf("WIN_WIDTH = %d, WIN_HIGHT = %d\n", WIN_WIDTH, WIN_HIGHT);
     return GUI_CreateDialogBox(_aCreateInfo, GUI_COUNTOF(_aCreateInfo), _cbDialog, WM_HBKWIN, 0, 0);
 }
@@ -133,7 +133,7 @@ static void _cbfatherDialog(WM_MESSAGE *pMsg)
     {
     case WM_PAINT:
         // --------------------------
-        // ¸¸´°¿Ú£ººÚÉ«±³¾° + ÎÞ±ß¿ò
+        // çˆ¶çª—å£ï¼šé»‘è‰²èƒŒæ™¯ + æ— è¾¹æ¡†
         // --------------------------
         GUI_SetBkColor(GUI_BLACK);
         GUI_Clear();

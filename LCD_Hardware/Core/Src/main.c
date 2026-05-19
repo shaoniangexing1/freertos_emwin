@@ -32,6 +32,7 @@
 #include "Inf_ST7785_LCD.h"
 #include "app.h"
 #include "Inf_ST7789_LCD.h"
+#include "Inf_FT6236.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,7 +93,24 @@ void vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer,
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+/**
+ * @brief  初始化DWT周期计数器（STM32H562专用）
+ * @note   必须在main函数开头、系统时钟配置完成后调用一次
+ */
+void DWT_Init(void)
+{
+    // 1. 使能CoreSight调试模块全局开关（Cortex-M33与M4完全兼容）
+    CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+    
+    // 2. 使能CYCCNT周期计数器
+    DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
+    
+    // 3. 清零计数器（可选，不影响溢出处理）
+    DWT->CYCCNT = 0;
+    
+    // 4. H562额外：可选使能ITM模块（用于printf调试输出）
+    // ITM->TCR |= ITM_TCR_ITMENA_Msk;
+}
 /* USER CODE END 0 */
 
 /**
@@ -132,22 +150,24 @@ int main(void)
   MX_SPI2_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
+	DWT_Init();//
   // LCD_BK_HIGH;
   // LCD_Start();
+	
    printf("helloword================\r\n");
 
    app_start();
-  //===========================ST7789����TEST===========================
+  //===========================ST7789初始屏幕测试TEST===========================
   // ST7789_LCD_Init();
 
   // ST7789_LCD_ShowString(10, 20, 50, 50, 24, "HelloHelloHeoHello");
-  // ������
+  // 画线测试
   // ST7789_LCD_DrawLine_Width(230, 20, 110, 20, 5, RED);
 
-  // ������
+  // 画线测试
   // ST7789_LCD_DrawLine_Width(20, 10, 20, 100, 4, BLUE);
 
-  // ��б��
+  // 画线测试
   // ST7789_LCD_DrawLine_Width(10, 10, 50, 50, 5, YELLOW);
   // printf("lcd show ending\r\n");
   /* USER CODE END 2 */
@@ -156,8 +176,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // HAL_IWDG_Refresh(&hiwdg); // ˢ�¶������Ź�
+     HAL_IWDG_Refresh(&hiwdg); // 喂看门狗
     // HAL_Delay(1000);
+		//=================触摸屏测试
+		if(TPR_Structure.TouchSta &TP_COORD_UD)		//触摸按下
+		{
+			TPR_Structure.TouchSta &= ~TP_COORD_UD;	//清楚标记
+			FT6236_Scan();							//读取坐标
+		 	//while((USART1->SR&0X40)==0);			//Í¨¹ý´®¿Ú1´òÓ¡´¥Ãþ×ø±êµ½µçÄÔÉÏ
+			printf("x轴坐标:\t%d\r\n",TPR_Structure.x[0]);
+			//while((USART1->SR&0X40)==0);
+			printf("Y轴坐标:\t%d\r\n",TPR_Structure.y[0]);
+		}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

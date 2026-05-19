@@ -156,7 +156,7 @@ void SPI2_Init_Set_Prescaler(uint32_t prescaler)
   hspi2.Init.Mode = SPI_MODE_MASTER;
   hspi2.Init.Direction = SPI_DIRECTION_2LINES;
   hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;//���óɸ���
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;//锟斤拷锟矫成革拷锟斤拷
   hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi2.Init.NSS = SPI_NSS_SOFT;
   hspi2.Init.BaudRatePrescaler = prescaler;

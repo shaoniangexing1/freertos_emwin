@@ -62,4 +62,4 @@ lcd_hardware/app.o: App\app.c App\app.h Inf\Inf_ST7785_LCD.h BSP\I2C.h \
   Middel\emwin\Inc\ROTARY.h Middel\emwin\Inc\SLIDER.h \
   Middel\emwin\Inc\SPINBOX.h Middel\emwin\Inc\SWIPELIST.h \
   Middel\emwin\Inc\SWITCH.h Middel\emwin\Inc\TREEVIEW.h \
-  ..\Core\Inc\IWDG.h
+  ..\Core\Inc\IWDG.h Inf\Inf_FT6236.h Com\Debug.h ..\Core\Inc\usart.h

@@ -65,6 +65,12 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(ST7789_RES_GPIO_Port, ST7789_RES_Pin, GPIO_PIN_SET);
 
+  /*Configure GPIO pin : FT6236U_INT_Pin */
+  GPIO_InitStruct.Pin = FT6236U_INT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(FT6236U_INT_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pins : IC_SCK_Pin IC_MOSI_Pin IC_CS_Pin */
   GPIO_InitStruct.Pin = IC_SCK_Pin|IC_MOSI_Pin|IC_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -115,6 +121,9 @@ void MX_GPIO_Init(void)
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI1_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI13_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(EXTI13_IRQn);
 
 }
 
