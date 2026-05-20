@@ -56,8 +56,8 @@ I (Middel\freertos\portable\portmacro.h)(0x61C2EEAA)
 I (Middel\freertos\include\mpu_wrappers.h)(0x61C2EEAA)
 I (Middel\freertos\include\task.h)(0x61C2EEAA)
 I (Middel\freertos\include\list.h)(0x61C2EEAA)
-I (App\app.h)(0x6A0B126B)
-I (Com\ComGlobal.h)(0x6A0B0F4A)
+I (App\app.h)(0x6A0C72F7)
+I (Com\ComGlobal.h)(0x6A0C69DE)
 I (Middel\emwin\Inc\WM.h)(0x69C7B031)
 I (Middel\emwin\Inc\GUI_ConfDefaults.h)(0x69C7B031)
 I (Middel\emwin\Inc\GUIConf.h)(0x69E43EF0)
@@ -386,7 +386,7 @@ I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_tim_ex.h)(0x69076843)
 I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart.h)(0x69076842)
 I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart_ex.h)(0x69076843)
 I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_exti.h)(0x69076842)
-F (../Core/Src/stm32h5xx_it.c)(0x6A0C5F85)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m33 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I ../Drivers/CMSIS/Include -I ./Inf -I ./BSP -I ./Middel/freertos -I ./Middel/freertos/include -I ./Middel/freertos/portable -I ./App -I ./Middel/emwin/Config -I ./Middel/emwin/Inc -I ./Middel/emwin/Lib/ARM -I ./Middel/emwin/OS -I ./Middel/emwin/GUI_NEW_Block -I ./Com-I./RTE/_LCD_Hardware-IC:/Apps/Keil543/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="543" -DSTM32H562xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H562xx-o lcd_hardware/stm32h5xx_it.o -MMD)
+F (../Core/Src/stm32h5xx_it.c)(0x6A0C5FF0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m33 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I ../Drivers/CMSIS/Include -I ./Inf -I ./BSP -I ./Middel/freertos -I ./Middel/freertos/include -I ./Middel/freertos/portable -I ./App -I ./Middel/emwin/Config -I ./Middel/emwin/Inc -I ./Middel/emwin/Lib/ARM -I ./Middel/emwin/OS -I ./Middel/emwin/GUI_NEW_Block -I ./Com-I./RTE/_LCD_Hardware-IC:/Apps/Keil543/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="543" -DSTM32H562xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H562xx-o lcd_hardware/stm32h5xx_it.o -MMD)
 I (..\Core\Inc\main.h)(0x6A0C5F26)
 I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal.h)(0x69076843)
 I (..\Core\Inc\stm32h5xx_hal_conf.h)(0x6A0B0825)
@@ -1297,8 +1297,8 @@ I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_tim_ex.h)(0x69076843)
 I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart.h)(0x69076842)
 I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart_ex.h)(0x69076843)
 I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_exti.h)(0x69076842)
-F (.\App\app.c)(0x6A0C5D07)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m33 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I ../Drivers/CMSIS/Include -I ./Inf -I ./BSP -I ./Middel/freertos -I ./Middel/freertos/include -I ./Middel/freertos/portable -I ./App -I ./Middel/emwin/Config -I ./Middel/emwin/Inc -I ./Middel/emwin/Lib/ARM -I ./Middel/emwin/OS -I ./Middel/emwin/GUI_NEW_Block -I ./Com-I./RTE/_LCD_Hardware-IC:/Apps/Keil543/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="543" -DSTM32H562xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H562xx-o lcd_hardware/app.o -MMD)
-I (App\app.h)(0x6A0B126B)
+F (.\App\app.c)(0x6A0DA924)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m33 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I ../Drivers/CMSIS/Include -I ./Inf -I ./BSP -I ./Middel/freertos -I ./Middel/freertos/include -I ./Middel/freertos/portable -I ./App -I ./Middel/emwin/Config -I ./Middel/emwin/Inc -I ./Middel/emwin/Lib/ARM -I ./Middel/emwin/OS -I ./Middel/emwin/GUI_NEW_Block -I ./Com-I./RTE/_LCD_Hardware-IC:/Apps/Keil543/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="543" -DSTM32H562xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H562xx-o lcd_hardware/app.o -MMD)
+I (App\app.h)(0x6A0C72F7)
 I (Inf\Inf_ST7785_LCD.h)(0x6A0B0F4A)
 I (BSP\I2C.h)(0x6A0B0B78)
 I (..\Core\Inc\gpio.h)(0x692715C4)
@@ -1346,7 +1346,7 @@ I (Middel\freertos\portable\portmacro.h)(0x61C2EEAA)
 I (Middel\freertos\include\mpu_wrappers.h)(0x61C2EEAA)
 I (Middel\freertos\include\task.h)(0x61C2EEAA)
 I (Middel\freertos\include\list.h)(0x61C2EEAA)
-I (Com\ComGlobal.h)(0x6A0B0F4A)
+I (Com\ComGlobal.h)(0x6A0C69DE)
 I (Middel\emwin\Inc\WM.h)(0x69C7B031)
 I (Middel\emwin\Inc\GUI_ConfDefaults.h)(0x69C7B031)
 I (Middel\emwin\Inc\GUIConf.h)(0x69E43EF0)
@@ -1483,7 +1483,7 @@ I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_uart_ex.h)(0x69076843)
 I (..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_exti.h)(0x69076842)
 I (Inf\font.h)(0x6A0B0F4A)
 I (..\Core\Inc\spi.h)(0x69E2F6D1)
-F (.\Inf\Inf_FT6236.c)(0x6A0C5ECA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m33 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I ../Drivers/CMSIS/Include -I ./Inf -I ./BSP -I ./Middel/freertos -I ./Middel/freertos/include -I ./Middel/freertos/portable -I ./App -I ./Middel/emwin/Config -I ./Middel/emwin/Inc -I ./Middel/emwin/Lib/ARM -I ./Middel/emwin/OS -I ./Middel/emwin/GUI_NEW_Block -I ./Com-I./RTE/_LCD_Hardware-IC:/Apps/Keil543/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="543" -DSTM32H562xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H562xx-o lcd_hardware/inf_ft6236.o -MMD)
+F (.\Inf\Inf_FT6236.c)(0x6A0DB4CF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m33 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I ../Drivers/CMSIS/Include -I ./Inf -I ./BSP -I ./Middel/freertos -I ./Middel/freertos/include -I ./Middel/freertos/portable -I ./App -I ./Middel/emwin/Config -I ./Middel/emwin/Inc -I ./Middel/emwin/Lib/ARM -I ./Middel/emwin/OS -I ./Middel/emwin/GUI_NEW_Block -I ./Com-I./RTE/_LCD_Hardware-IC:/Apps/Keil543/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="543" -DSTM32H562xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H562xx-o lcd_hardware/inf_ft6236.o -MMD)
 I (Inf\Inf_FT6236.h)(0x6A0B1F15)
 I (Inf\Inf_ST7785_LCD.h)(0x6A0B0F4A)
 I (BSP\I2C.h)(0x6A0B0B78)
@@ -2062,7 +2062,7 @@ I (Middel\emwin\Inc\GUI_Type.h)(0x69C7B031)
 I (Middel\emwin\Inc\LCD.h)(0x69CD1486)
 I (Middel\emwin\Inc\Global.h)(0x69C7B031)
 I (Middel\emwin\Inc\GUI_Version.h)(0x69C7B031)
-I (Com\ComGlobal.h)(0x6A0B0F4A)
+I (Com\ComGlobal.h)(0x6A0C69DE)
 I (Middel\emwin\Inc\WM.h)(0x69C7B031)
 I (Middel\emwin\Inc\WM_GUI.h)(0x69C7B031)
 I (Middel\emwin\Inc\FRAMEWIN.h)(0x69C7B031)
@@ -2117,7 +2117,7 @@ I (Middel\emwin\Inc\GUI_Debug.h)(0x69C7B031)
 I (Middel\emwin\Inc\WM_GUI.h)(0x69C7B031)
 I (Middel\emwin\Inc\LCD_SIM.h)(0x69C7B031)
 I (Middel\emwin\Inc\LCD_ConfDefaults.h)(0x69C7B031)
-I (Com\ComGlobal.h)(0x6A0B0F4A)
+I (Com\ComGlobal.h)(0x6A0C69DE)
 I (Middel\emwin\Inc\WM.h)(0x69C7B031)
 I (Middel\emwin\Inc\FRAMEWIN.h)(0x69C7B031)
 I (Middel\emwin\Inc\WIDGET.h)(0x69C7B031)
@@ -2211,7 +2211,7 @@ I (Middel\freertos\include\mpu_wrappers.h)(0x61C2EEAA)
 I (Middel\freertos\include\task.h)(0x61C2EEAA)
 I (Middel\freertos\include\list.h)(0x61C2EEAA)
 I (Inf\Inf_ST7789_LCD.h)(0x6A0B0F4A)
-I (Com\ComGlobal.h)(0x6A0B0F4A)
+I (Com\ComGlobal.h)(0x6A0C69DE)
 I (Middel\emwin\Inc\WM.h)(0x69C7B031)
 I (Middel\emwin\Inc\WM_GUI.h)(0x69C7B031)
 I (Middel\emwin\Inc\FRAMEWIN.h)(0x69C7B031)
@@ -2321,7 +2321,54 @@ I (Middel\emwin\Inc\LCD.h)(0x69CD1486)
 I (Middel\emwin\Inc\Global.h)(0x69C7B031)
 I (Middel\emwin\Inc\GUI_Version.h)(0x69C7B031)
 F (.\Middel\emwin\GUI_NEW_Block\EditModule.c)(0x6A0B0F4A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m33 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I ../Drivers/CMSIS/Include -I ./Inf -I ./BSP -I ./Middel/freertos -I ./Middel/freertos/include -I ./Middel/freertos/portable -I ./App -I ./Middel/emwin/Config -I ./Middel/emwin/Inc -I ./Middel/emwin/Lib/ARM -I ./Middel/emwin/OS -I ./Middel/emwin/GUI_NEW_Block -I ./Com-I./RTE/_LCD_Hardware-IC:/Apps/Keil543/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="543" -DSTM32H562xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H562xx-o lcd_hardware/editmodule.o -MMD)
-I (Com\ComGlobal.h)(0x6A0B0F4A)
+I (Com\ComGlobal.h)(0x6A0C69DE)
+I (Middel\emwin\Inc\WM.h)(0x69C7B031)
+I (Middel\emwin\Inc\GUI_ConfDefaults.h)(0x69C7B031)
+I (Middel\emwin\Inc\GUIConf.h)(0x69E43EF0)
+I (Middel\emwin\Inc\GUI_Type.h)(0x69C7B031)
+I (Middel\emwin\Inc\LCD.h)(0x69CD1486)
+I (Middel\emwin\Inc\Global.h)(0x69C7B031)
+I (Middel\emwin\Inc\WM_GUI.h)(0x69C7B031)
+I (Middel\emwin\Inc\GUI.h)(0x69CD2863)
+I (Middel\emwin\Inc\GUI_Version.h)(0x69C7B031)
+I (Middel\emwin\Inc\FRAMEWIN.h)(0x69C7B031)
+I (Middel\emwin\Inc\WIDGET.h)(0x69C7B031)
+I (Middel\emwin\Inc\GUI_Debug.h)(0x69C7B031)
+I (Middel\emwin\Inc\SCROLLBAR.h)(0x69C7B031)
+I (Middel\emwin\Inc\DIALOG_Type.h)(0x69C7B031)
+I (Middel\emwin\Inc\TEXT.h)(0x69C7B031)
+I (Middel\emwin\Inc\EDIT.h)(0x69C7B031)
+I (Middel\emwin\Inc\DIALOG.h)(0x69C7B031)
+I (Middel\emwin\Inc\BUTTON.h)(0x69C7B031)
+I (Middel\emwin\Inc\CALENDAR.h)(0x69C7B031)
+I (Middel\emwin\Inc\CHECKBOX.h)(0x69C7B031)
+I (Middel\emwin\Inc\CHOOSECOLOR.h)(0x69C7B031)
+I (Middel\emwin\Inc\CHOOSEFILE.h)(0x69C7B031)
+I (Middel\emwin\Inc\DROPDOWN.h)(0x69C7B031)
+I (Middel\emwin\Inc\LISTBOX.h)(0x69C7B031)
+I (Middel\emwin\Inc\GAUGE.h)(0x69C7B031)
+I (Middel\emwin\Inc\GRAPH.h)(0x69C7B031)
+I (Middel\emwin\Inc\HEADER.h)(0x69C7B031)
+I (Middel\emwin\Inc\ICONVIEW.h)(0x69C7B031)
+I (Middel\emwin\Inc\IMAGE.h)(0x69C7B031)
+I (Middel\emwin\Inc\KEYBOARD.h)(0x69C7B031)
+I (Middel\emwin\Inc\KNOB.h)(0x69C7B031)
+I (Middel\emwin\Inc\LISTVIEW.h)(0x69C7B031)
+I (Middel\emwin\Inc\LISTWHEEL.h)(0x69C7B031)
+I (Middel\emwin\Inc\MENU.h)(0x69C7B031)
+I (Middel\emwin\Inc\MULTIEDIT.h)(0x69C7B031)
+I (Middel\emwin\Inc\MULTIPAGE.h)(0x69C7B031)
+I (Middel\emwin\Inc\PROGBAR.h)(0x69C7B031)
+I (Middel\emwin\Inc\QRCODE.h)(0x69C7B031)
+I (Middel\emwin\Inc\RADIO.h)(0x69C7B031)
+I (Middel\emwin\Inc\ROTARY.h)(0x69C7B031)
+I (Middel\emwin\Inc\SLIDER.h)(0x69C7B031)
+I (Middel\emwin\Inc\SPINBOX.h)(0x69C7B031)
+I (Middel\emwin\Inc\SWIPELIST.h)(0x69C7B031)
+I (Middel\emwin\Inc\SWITCH.h)(0x69C7B031)
+I (Middel\emwin\Inc\TREEVIEW.h)(0x69C7B031)
+F (.\Middel\emwin\GUI_NEW_Block\Show_Image.c)(0x6A0C70E5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m33 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc -I ../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I ../Drivers/CMSIS/Include -I ./Inf -I ./BSP -I ./Middel/freertos -I ./Middel/freertos/include -I ./Middel/freertos/portable -I ./App -I ./Middel/emwin/Config -I ./Middel/emwin/Inc -I ./Middel/emwin/Lib/ARM -I ./Middel/emwin/OS -I ./Middel/emwin/GUI_NEW_Block -I ./Com-I./RTE/_LCD_Hardware-IC:/Apps/Keil543/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="543" -DSTM32H562xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H562xx-o lcd_hardware/show_image.o -MMD)
+I (Com\ComGlobal.h)(0x6A0C69DE)
 I (Middel\emwin\Inc\WM.h)(0x69C7B031)
 I (Middel\emwin\Inc\GUI_ConfDefaults.h)(0x69C7B031)
 I (Middel\emwin\Inc\GUIConf.h)(0x69E43EF0)

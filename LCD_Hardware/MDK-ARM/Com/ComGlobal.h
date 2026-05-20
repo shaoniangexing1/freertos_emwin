@@ -15,10 +15,17 @@
 
 #define LCD_SELECT  COM_LCD_BSP_ST7789
 
-
+typedef enum{
+    BMP,
+    JPEG,
+    GIF,
+    DTA,
+    PNG
+}ImageType;
 
 
 WM_HWIN EditModule_Create(void);
+void Emwin_Show_Image(char* File_src,ImageType type,U8 x,U8 y);
 
 void set_fatherwin(void);
 

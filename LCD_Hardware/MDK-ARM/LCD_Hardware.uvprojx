@@ -1723,6 +1723,11 @@
               <FileType>1</FileType>
               <FilePath>.\Middel\emwin\GUI_NEW_Block\EditModule.c</FilePath>
             </File>
+            <File>
+              <FileName>Show_Image.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middel\emwin\GUI_NEW_Block\Show_Image.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

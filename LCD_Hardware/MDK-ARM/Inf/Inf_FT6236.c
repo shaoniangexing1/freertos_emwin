@@ -32,6 +32,7 @@ void FT6236_Stop(void)
 {
 	//SDA_OUT();     		//sda线输出	
 	// delay_us(3);	
+	
 	 FT6236_SCL_HIGH;		//SCL最小高电平脉宽:0.6us		
 	 delay_us(4);		//停止信号的最小建立时间:0.6us
 	FT6236_SDA_LOW;	
@@ -52,12 +53,13 @@ void FT6236_McuACK(void)
 {
 	FT6236_SCL_LOW;	
 	//SDA_OUT();     		//sda线输出	
-	delay_us(3);
+	//delay_us(3);
 	FT6236_SDA_LOW;	
 	delay_us(2);																	
 	FT6236_SCL_HIGH;		//SCL最小高电平脉宽:0.6us
 	delay_us(2);
 	FT6236_SCL_LOW;		//SCL最小低电平脉宽:1.2us
+	//FT6236_SDA_HIGH;
 }
 
 /****************************************************
@@ -77,6 +79,7 @@ void FT6236_McuNACK(void)
 	FT6236_SCL_HIGH;				//SCL最小高电平脉宽:0.6us
 	delay_us(2);
 	FT6236_SCL_LOW;				//SCL最小低电平脉宽:1.2us
+	//FT6236_SDA_HIGH;
 }
 
 /****************************************************
@@ -148,7 +151,7 @@ uint8_t FT6236_RdOneByte(void)
 {
 	uint8_t i,dat = 0;				//接收数据位数和内容暂存单元
 	//SDA_IN();						//SDA设置为输入
-	delay_us(2);	
+	//delay_us(2);	
 	FT6236_SDA_HIGH;			//使能上拉,准备读取数据
 	delay_us(2);
 	for(i = 8;i > 0;i--)
@@ -208,7 +211,7 @@ void FT6236_RD_Reg(uint16_t reg,uint8_t *buf,uint8_t len)
 		*buf++ = FT6236_RdOneByte();		//读入1B数据到接收数据缓冲区中
 		FT6236_McuACK();					//发送应答位	  
 	} 
-	FT6236_McuNACK();						//n个字节读完,发送非应答位
+	//FT6236_McuNACK();						//n个字节读完,发送非应答位
     FT6236_Stop();					//产生一个停止条件	  
 } 
 /* 

@@ -18,13 +18,13 @@ void app_start(void)
 }
 
 void LCD_task(void *pvParameters)
-{ 	// 初始化emWin
+{ // 初始化emWin
     LCD_X_Config();
-    //HAL_IWDG_Refresh(&hiwdg); // 刷新看门狗
+    // HAL_IWDG_Refresh(&hiwdg); // 刷新看门狗
     int ret = GUI_Init();
     if (ret != 0)
         printf("GUI_Init failed with error code: %d\n", ret);
-	FT6236_Init();
+    FT6236_Init();
 
     // ret = HAL_SPI_DeInit(&hspi2); // 先反初标化 SPI，确保干净的状标
     // //HAL_GPIO_DeInit(GPIOB, GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15); // 反初始化 SPI2 相关 GPIO
@@ -41,11 +41,12 @@ void LCD_task(void *pvParameters)
     WM_InvalidateWindow(hDlg);
     GUI_Exec();
     LCD_X_DisplayDriver(0, LCD_X_SHOWBUFFER, NULL);
-
     while (1)
     {
+        char image_src[]="C:\\Users\\Administrator\\STM32Cube\\Repository\\STM32Cube_FW_F4_V1.27.1\\Utilities\\Media\\Pictures\\BMP_240x240\\24-bits\\image04.bmp";
+        ImageType type = BMP;
         // // 运GUI 窗口管理
-        //GUI_Exec();
+        // GUI_Exec();
         // 处理消息，不主动刷新！！
         // if (GUI_Exec() == 0)
         // {
@@ -57,16 +58,21 @@ void LCD_task(void *pvParameters)
         //         last_tick = xTaskGetTickCount();
         //     }
         // }
-			
-			if(TPR_Structure.TouchSta &TP_COORD_UD)		//触摸按下
-		{
-			TPR_Structure.TouchSta &= ~TP_COORD_UD;	//清除标标
-			FT6236_Scan();							//读取坐标
-		 	//while((USART1->SR&0X40)==0);			//
-			printf("x轴坐标:\t%d\r\n",TPR_Structure.x[0]);
-			//while((USART1->SR&0X40)==0);
-			printf("Y轴坐标:\t%d\r\n",TPR_Structure.y[0]);
-		}
+
+        if (TPR_Structure.TouchSta & TP_COORD_UD) // 触摸按下
+        {
+            TPR_Structure.TouchSta &= ~TP_COORD_UD; // 清除标标
+            FT6236_Scan();                          // 读取坐标
+            // while((USART1->SR&0X40)==0);			//
+            printf("x轴坐标:\t%d\r\n", TPR_Structure.x[0]);
+            // while((USART1->SR&0X40)==0);
+            printf("Y轴坐标:\t%d\r\n", TPR_Structure.y[0]);
+            //strcpy(image_src,"");
+						//EDIT_SetText(hDlg, "aaaaaa"); // <-- 设置编辑框内容
+					//GUI_Exec();
+					//LCD_X_DisplayDriver(0, LCD_X_SHOWBUFFER, NULL);
+            //Emwin_Show_Image(image_src, BMP, 0, 0); // 显示图片
+        }
 
         vTaskDelay(10);
         HAL_IWDG_Refresh(&hiwdg); // 刷新标立看门狗
