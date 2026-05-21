@@ -122,7 +122,7 @@ void MX_GPIO_Init(void)
   HAL_NVIC_SetPriority(EXTI1_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(EXTI1_IRQn);
 
-  HAL_NVIC_SetPriority(EXTI13_IRQn, 2, 0);
+  HAL_NVIC_SetPriority(EXTI13_IRQn, 6, 0);
   HAL_NVIC_EnableIRQ(EXTI13_IRQn);
 
 }

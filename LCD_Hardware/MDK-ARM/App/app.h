@@ -7,7 +7,7 @@
 #include "IWDG.h"
 #include "stdio.h"
 #include "WM.h"
-#include "Inf_FT6236.h"
+#include "Inf_Touch_gesture.h"
 
 extern void SPI2_Init_Set_Prescaler(uint32_t prescaler);
 

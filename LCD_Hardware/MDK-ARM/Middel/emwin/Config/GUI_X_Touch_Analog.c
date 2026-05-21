@@ -44,6 +44,7 @@ Purpose     : Config / System dependent externals for GUI
 #include "GUI.h"
 
 void GUI_TOUCH_X_ActivateX(void) {
+  
 }
 
 void GUI_TOUCH_X_ActivateY(void) {

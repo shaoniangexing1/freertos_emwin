@@ -1583,6 +1583,11 @@
               <FileType>1</FileType>
               <FilePath>.\Inf\Inf_FT6236.c</FilePath>
             </File>
+            <File>
+              <FileName>Inf_Touch_gesture.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Inf\Inf_Touch_gesture.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

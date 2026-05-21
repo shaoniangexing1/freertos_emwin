@@ -40,6 +40,7 @@
 "lcd_hardware\inf_st7785_lcd.o"
 "lcd_hardware\inf_st7789_lcd.o"
 "lcd_hardware\inf_ft6236.o"
+"lcd_hardware\inf_touch_gesture.o"
 "lcd_hardware\i2c.o"
 "lcd_hardware\bsp_st7785_spi.o"
 "lcd_hardware\croutine.o"

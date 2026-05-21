@@ -62,6 +62,7 @@ uint8_t key1_pressed = 0;
 extern SPI_HandleTypeDef hspi2;
 extern UART_HandleTypeDef huart1;
 extern TIM_HandleTypeDef htim2;
+extern TaskHandle_t TOUCH_Task_Handler;
 
 /* USER CODE BEGIN EV */
 extern void xPortSysTickHandler(void);
@@ -148,7 +149,7 @@ void UsageFault_Handler(void)
 /**
   * @brief This function handles System service call via SWI instruction.
   */
-void SVC_Hand1ler(void)
+void S1VC_Handler(void)
 {
   /* USER CODE BEGIN SVCall_IRQn 0 */
 
@@ -174,7 +175,7 @@ void DebugMon_Handler(void)
 /**
   * @brief This function handles Pendable request for system service.
   */
-void PendSV_Han1dler(void)
+void PendSV_Ha1ndler(void)
 {
   /* USER CODE BEGIN PendSV_IRQn 0 */
 
@@ -283,9 +284,17 @@ void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin)
     /* Handle KEY1 press event here */
     key1_pressed = 1;
   }else if(GPIO_Pin == FT6236U_INT_Pin){
-		delay_us(10);
+		//delay_us(10);
+		 
 		if(HAL_GPIO_ReadPin(FT6236U_INT_GPIO_Port,FT6236U_INT_Pin)==GPIO_PIN_RESET){
+			BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 			TPR_Structure.TouchSta |= TP_COORD_UD;				//置位触摸标志位
+			// 向按键处理任务发送通知
+       vTaskNotifyGiveFromISR(TOUCH_Task_Handler, &xHigherPriorityTaskWoken);
+
+        // 如果有更高优先级的任务被唤醒，请求上下文切换
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+			
 		}
 	}
 }

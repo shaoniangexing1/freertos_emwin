@@ -1,5 +1,6 @@
-lcd_hardware/app.o: App\app.c App\app.h Inf\Inf_ST7785_LCD.h BSP\I2C.h \
-  ..\Core\Inc\gpio.h ..\Core\Inc\main.h \
+lcd_hardware/inf_touch_gesture.o: Inf\Inf_Touch_gesture.c \
+  Inf\Inf_touch_gesture.h Inf\Inf_FT6236.h Inf\Inf_ST7785_LCD.h \
+  BSP\I2C.h ..\Core\Inc\gpio.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal.h \
   ..\Core\Inc\stm32h5xx_hal_conf.h \
   ..\Drivers\STM32H5xx_HAL_Driver\Inc\stm32h5xx_hal_rcc.h \
@@ -39,28 +40,4 @@ lcd_hardware/app.o: App\app.c App\app.h Inf\Inf_ST7785_LCD.h BSP\I2C.h \
   Middel\freertos\include\deprecated_definitions.h \
   Middel\freertos\portable\portmacro.h \
   Middel\freertos\include\mpu_wrappers.h Middel\freertos\include\task.h \
-  Middel\freertos\include\list.h Com\ComGlobal.h Middel\emwin\Inc\WM.h \
-  Middel\emwin\Inc\GUI_ConfDefaults.h Middel\emwin\Inc\GUIConf.h \
-  Middel\emwin\Inc\GUI_Type.h Middel\emwin\Inc\LCD.h \
-  Middel\emwin\Inc\Global.h Middel\emwin\Inc\WM_GUI.h \
-  Middel\emwin\Inc\GUI.h Middel\emwin\Inc\GUI_Version.h \
-  Middel\emwin\Inc\FRAMEWIN.h Middel\emwin\Inc\WIDGET.h \
-  Middel\emwin\Inc\GUI_Debug.h Middel\emwin\Inc\SCROLLBAR.h \
-  Middel\emwin\Inc\DIALOG_Type.h Middel\emwin\Inc\TEXT.h \
-  Middel\emwin\Inc\EDIT.h Middel\emwin\Inc\DIALOG.h \
-  Middel\emwin\Inc\BUTTON.h Middel\emwin\Inc\CALENDAR.h \
-  Middel\emwin\Inc\CHECKBOX.h Middel\emwin\Inc\CHOOSECOLOR.h \
-  Middel\emwin\Inc\CHOOSEFILE.h Middel\emwin\Inc\DROPDOWN.h \
-  Middel\emwin\Inc\LISTBOX.h Middel\emwin\Inc\GAUGE.h \
-  Middel\emwin\Inc\GRAPH.h Middel\emwin\Inc\HEADER.h \
-  Middel\emwin\Inc\ICONVIEW.h Middel\emwin\Inc\IMAGE.h \
-  Middel\emwin\Inc\KEYBOARD.h Middel\emwin\Inc\KNOB.h \
-  Middel\emwin\Inc\LISTVIEW.h Middel\emwin\Inc\LISTWHEEL.h \
-  Middel\emwin\Inc\MENU.h Middel\emwin\Inc\MULTIEDIT.h \
-  Middel\emwin\Inc\MULTIPAGE.h Middel\emwin\Inc\PROGBAR.h \
-  Middel\emwin\Inc\QRCODE.h Middel\emwin\Inc\RADIO.h \
-  Middel\emwin\Inc\ROTARY.h Middel\emwin\Inc\SLIDER.h \
-  Middel\emwin\Inc\SPINBOX.h Middel\emwin\Inc\SWIPELIST.h \
-  Middel\emwin\Inc\SWITCH.h Middel\emwin\Inc\TREEVIEW.h \
-  ..\Core\Inc\IWDG.h Inf\Inf_Touch_gesture.h Inf\Inf_FT6236.h \
-  Com\Debug.h ..\Core\Inc\usart.h
+  Middel\freertos\include\list.h Com\Debug.h ..\Core\Inc\usart.h
